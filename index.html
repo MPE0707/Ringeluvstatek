@@ -5,313 +5,285 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ringelův statek | Ubytování Vernéřovice</title>
   <meta name="description" content="Ringelův statek ve Vernéřovicích v CHKO Broumovsko. Ubytování až pro 11 osob, oplocená zahrada, koupací sud s vířivkou." />
+
   <style>
-:root{
-  --bg:#fbfaf7;
-  --bg-alt:#f1efe8;
-  --text:#1f2937;
-  --muted:#5b6472;
-  --brand:#2f6b4f;
-  --card:#ffffff;
-  --border: rgba(31,41,55,0.10);
-  --shadow: 0 10px 28px rgba(31,41,55,0.10);
-  --radius: 18px;
-  --max: 1120px;
-}
+    :root{
+      --bg:#fbfaf7;
+      --bg-alt:#f1efe8;
+      --text:#1f2937;
+      --muted:#5b6472;
+      --brand:#2f6b4f;
+      --card:#ffffff;
+      --border: rgba(31,41,55,0.10);
+      --shadow: 0 12px 34px rgba(31,41,55,0.12);
+      --radius: 18px;
+      --max: 1120px;
+    }
 
-*{ box-sizing: border-box; }
-html{ scroll-behavior: smooth; }
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    img{ max-width: 100%; display:block; }
+    .container{
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
 
-body{
-  margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-}
+    .site-header{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(251,250,247,0.90);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner{
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 14px;
+      padding: 14px 0;
+    }
+    .logo{
+      font-weight: 900;
+      letter-spacing: -0.01em;
+    }
+    .nav{
+      display:flex;
+      flex-wrap: wrap;
+      align-items:center;
+      gap: 10px;
+    }
+    .nav a{
+      text-decoration:none;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 12px;
+    }
+    .nav a:hover{
+      background: rgba(47,107,79,0.08);
+      color: var(--text);
+    }
+    .nav .cta{
+      background: var(--brand);
+      color:#fff;
+    }
+    .nav .cta:hover{
+      background: #25573f;
+      color:#fff;
+    }
 
-img{ max-width: 100%; display:block; }
+    .hero{
+      padding: 18px 0 34px 0;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 26px;
+      align-items:center;
+    }
+    .hero h1{
+      font-size: clamp(30px, 3.4vw, 48px);
+      line-height: 1.12;
+      margin: 0 0 12px 0;
+      letter-spacing: -0.02em;
+    }
+    .lead{
+      color: var(--muted);
+      font-size: 18px;
+      margin: 0 0 14px 0;
+    }
+    .hero-actions{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 10px 0 16px 0;
+    }
+    .button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-weight: 900;
+      border: 1px solid var(--border);
+      text-decoration:none;
+      color: var(--text);
+      background: rgba(255,255,255,0.65);
+    }
+    .button:hover{ background: #fff; }
+    .button.primary{
+      background: var(--brand);
+      color:#fff;
+      border-color: transparent;
+      box-shadow: var(--shadow);
+    }
+    .button.primary:hover{ background: #25573f; }
 
-.container{
-  width: min(var(--max), calc(100% - 40px));
-  margin: 0 auto;
-}
+    .badges{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .badge{
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.70);
+      border: 1px solid var(--border);
+    }
+    .badge-title{
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .badge-value{
+      font-weight: 950;
+      margin-top: 2px;
+    }
 
-.site-header{
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: rgba(251,250,247,0.86);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
-}
+    .hero-media{
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      background: rgba(255,255,255,0.35);
+      min-height: 520px;
+    }
+    .hero-media img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display:block;
+    }
+    .hero-media::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.00) 40%, rgba(0,0,0,0.22) 100%);
+      pointer-events:none;
+    }
+    .hero-caption{
+      position:absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 14px;
+      color: rgba(255,255,255,0.92);
+      font-weight: 800;
+      text-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      line-height: 1.3;
+      font-size: 14px;
+    }
 
-.header-inner{
-  display:flex;
-  justify-content: space-between;
-  align-items:center;
-  gap: 14px;
-  padding: 14px 0;
-}
+    .section{
+      padding: 48px 0;
+    }
+    .section.alt{
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .section h2{
+      margin: 0 0 12px 0;
+      font-size: 28px;
+      letter-spacing: -0.01em;
+    }
+    .muted{ color: var(--muted); }
+    .small{ font-size: 14px; }
 
-.nav{
-  display:flex;
-  flex-wrap: wrap;
-  align-items:center;
-  gap: 10px;
-}
+    .grid-list{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      list-style:none;
+      padding: 0;
+      margin: 18px 0 0 0;
+    }
+    .grid-list li{
+      background: rgba(255,255,255,0.70);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px 14px;
+      font-weight: 800;
+    }
 
-.nav a{
-  text-decoration:none;
-  color: var(--muted);
-  font-weight: 700;
-  font-size: 14px;
-  padding: 8px 10px;
-  border-radius: 12px;
-}
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 8px 22px rgba(31,41,55,0.06);
+    }
+    .price{
+      font-size: 22px;
+      font-weight: 950;
+    }
 
-.nav a:hover{
-  background: rgba(47,107,79,0.08);
-  color: var(--text);
-}
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .gallery-img{
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 18px rgba(31,41,55,0.06);
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
 
-.button-small{
-  background: var(--brand);
-  color:#fff !important;
-}
+    .site-footer{
+      padding: 22px 0;
+      border-top: 1px solid var(--border);
+      background: rgba(251,250,247,0.92);
+    }
+    .footer-inner{
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 14px;
+    }
+    .footer-inner a{ text-decoration:none; }
 
-.hero{
-  padding: 46px 0 26px 0;
-}
-
-.hero-grid{
-  display:grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 26px;
-  align-items:center;
-}
-
-.hero h1{
-  font-size: clamp(28px, 3.2vw, 44px);
-  line-height: 1.15;
-  margin: 0 0 12px 0;
-  letter-spacing: -0.02em;
-}
-
-.lead{
-  color: var(--muted);
-  font-size: 18px;
-  margin: 0 0 14px 0;
-}
-
-.hero-actions{
-  display:flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 8px 0 14px 0;
-}
-
-.button{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding: 12px 16px;
-  border-radius: 14px;
-  font-weight: 800;
-  border: 1px solid var(--border);
-  text-decoration:none;
-  color: var(--text);
-  background: rgba(255,255,255,0.65);
-}
-
-.button:hover{
-  background: #fff;
-}
-
-.button.ghost{
-  background: rgba(255,255,255,0.35);
-}
-
-.button.ghost:hover{
-  background: rgba(255,255,255,0.70);
-}
-
-.button:visited{ color: var(--text); }
-
-.button[href^="https://"], .button.primary{
-  background: var(--brand);
-  color:#fff;
-  border-color: transparent;
-  box-shadow: var(--shadow);
-}
-
-.button[href^="https://"]:hover, .button.primary:hover{
-  background: #25573f;
-  color:#fff;
-}
-
-.badges{
-  display:grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.badge{
-  padding: 12px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.65);
-  border: 1px solid var(--border);
-}
-
-.badge-title{
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.badge-value{
-  font-weight: 900;
-  margin-top: 2px;
-}
-
-.hero-media img{
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
-.section{
-  padding: 48px 0;
-}
-
-.section.alt{
-  background: var(--bg-alt);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.section h2{
-  margin: 0 0 12px 0;
-  font-size: 28px;
-  letter-spacing: -0.01em;
-}
-
-.small{ font-size: 14px; }
-.muted{ color: var(--muted); }
-
-.grid-list{
-  display:grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  list-style:none;
-  padding: 0;
-  margin: 18px 0 0 0;
-}
-
-.grid-list li{
-  background: rgba(255,255,255,0.65);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 12px 14px;
-  font-weight: 700;
-}
-
-.cards{
-  display:grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  margin-top: 18px;
-}
-
-.card{
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px;
-  box-shadow: 0 8px 22px rgba(31,41,55,0.06);
-}
-
-.price{
-  font-size: 22px;
-  font-weight: 900;
-}
-
-.gallery{
-  display:grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 16px;
-}
-
-.gallery-img{
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  box-shadow: 0 8px 18px rgba(31,41,55,0.06);
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-}
-
-.iframe-note{
-  margin-top: 22px;
-}
-
-.iframe-wrap{
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  overflow:hidden;
-  background: rgba(255,255,255,0.6);
-  min-height: 320px;
-  margin-top: 10px;
-}
-
-.iframe-placeholder{
-  padding: 18px;
-  color: var(--muted);
-}
-
-.site-footer{
-  padding: 22px 0;
-  border-top: 1px solid var(--border);
-  background: rgba(251,250,247,0.9);
-}
-
-.footer-inner{
-  display:flex;
-  justify-content: space-between;
-  align-items:center;
-  gap: 14px;
-}
-
-.footer-inner a{
-  text-decoration:none;
-}
-
-@media (max-width: 980px){
-  .hero-grid{ grid-template-columns: 1fr; }
-  .badges{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .cards{ grid-template-columns: 1fr; }
-  .grid-list{ grid-template-columns: 1fr; }
-  .gallery{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
-</style>
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .badges{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .cards{ grid-template-columns: 1fr; }
+      .grid-list{ grid-template-columns: 1fr; }
+      .gallery{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero-media{ min-height: 420px; }
+    }
+  </style>
 </head>
 
 <body>
 
 <header class="site-header">
   <div class="container header-inner">
-    <div class="logo"><strong>Ringelův statek</strong></div>
+    <div class="logo">Ringelův statek</div>
     <nav class="nav">
       <a href="#o-nas">O statku</a>
       <a href="#vybaveni">Vybavení</a>
       <a href="#galerie">Galerie</a>
       <a href="#vylety">Výlety</a>
       <a href="#ceny">Ceník</a>
-      <a class="button-small" href="#rezervace">Rezervace</a>
+      <a class="cta" href="#rezervace">Rezervace</a>
     </nav>
   </div>
 </header>
@@ -325,11 +297,13 @@ img{ max-width: 100%; display:block; }
           Prostorná chalupa pro až 11 osob na okraji Vernéřovic.
           Oplocená zahrada, koupací sud s vířivkou a výlety přímo od domu.
         </p>
+
         <div class="hero-actions">
-          <a class="button" href="#rezervace">Zkontrolovat dostupnost</a>
-          <a class="button ghost" href="#galerie">Prohlédnout fotky</a>
+          <a class="button primary" href="#rezervace">Zkontrolovat dostupnost</a>
+          <a class="button" href="#galerie">Prohlédnout fotky</a>
         </div>
-        <div class="badges">
+
+        <div class="badges" aria-label="Rychlé informace">
           <div class="badge">
             <div class="badge-title">Kapacita</div>
             <div class="badge-value">až 11 osob</div>
@@ -349,11 +323,14 @@ img{ max-width: 100%; display:block; }
         </div>
       </div>
 
-      <div class="hero-media">
-        <img src="assets/hero.jpeg" alt="Ringelův statek, exteriér" loading="eager" />
-        <p class="muted small">
-          Pokud se fotka nezobrazuje, zkontroluj že se jmenuje přesně <strong>hero.jpg</strong> a je ve složce <strong>assets</strong> vedle souboru index.html.
-        </p>
+      <div class="hero-media" aria-label="Hlavní fotografie">
+        <picture>
+          <source srcset="assets/hero.jpeg" type="image/jpeg" />
+          <img src="assets/hero.jpg" alt="Ringelův statek, exteriér" loading="eager" />
+        </picture>
+        <div class="hero-caption">
+          Ringelův statek, Vernéřovice, CHKO Broumovsko
+        </div>
       </div>
     </div>
   </section>
@@ -362,8 +339,8 @@ img{ max-width: 100%; display:block; }
     <div class="container">
       <h2>O statku</h2>
       <p>
-        Ringelův statek je chalupa z počátku 19. století na klidném místě
-        téměř na konci vesnice Vernéřovice. Ideální pro rodiny a skupiny přátel.
+        Ringelův statek je chalupa z počátku 19. století na klidném místě téměř na konci vesnice Vernéřovice.
+        Ideální pro rodiny a skupiny přátel.
       </p>
     </div>
   </section>
@@ -386,11 +363,9 @@ img{ max-width: 100%; display:block; }
   <section id="galerie" class="section">
     <div class="container">
       <h2>Galerie</h2>
-      <p class="muted">
-        Přidej fotky do složky assets a pojmenuj je <strong>gallery-1.jpg</strong> až <strong>gallery-12.jpg</strong>.
-        Klidně jich dej méně, chybějící se jen nezobrazí.
+      <p class="muted small">
+        Fotky dej do složky assets a pojmenuj je gallery-1.jpeg, gallery-2.jpeg a tak dál.
       </p>
-
       <div class="gallery" id="galleryGrid" aria-label="Fotogalerie"></div>
     </div>
   </section>
@@ -439,19 +414,9 @@ img{ max-width: 100%; display:block; }
     <div class="container">
       <h2>Rezervace</h2>
       <p>Rezervace probíhá přes e-chalupy.</p>
-      <a class="button" href="https://www.e-chalupy.cz/chalupa-vernerovice-ubytovani-statek-o8519" target="_blank" rel="noopener">
+      <a class="button primary" href="https://www.e-chalupy.cz/chalupa-vernerovice-ubytovani-statek-o8519" target="_blank" rel="noopener">
         Otevřít rezervaci
       </a>
-
-      <div class="iframe-note">
-        <h3>Kalendář obsazenosti</h3>
-        <p class="muted small">
-          Pokud získáš iframe kód z e-chalupy, vložíme ho sem. Zatím je tu jen místo.
-        </p>
-        <div class="iframe-wrap">
-          <div class="iframe-placeholder">Sem vlož iframe kód, pokud je k dispozici.</div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -485,18 +450,22 @@ img{ max-width: 100%; display:block; }
   document.getElementById("year").textContent = new Date().getFullYear();
 
   const grid = document.getElementById("galleryGrid");
-  const maxPhotos = 12;
+  const maxPhotos = 24;
 
   function addPhoto(i){
     const img = new Image();
     img.loading = "lazy";
     img.alt = "Fotogalerie " + i;
-    img.src = "assets/gallery-" + i + ".jpeg";
     img.className = "gallery-img";
 
     img.onerror = function(){
       if (img && img.parentNode) img.parentNode.removeChild(img);
     };
+
+    img.src = "assets/gallery-" + i + ".jpeg";
+    img.addEventListener("error", function(){
+      img.src = "assets/gallery-" + i + ".jpg";
+    }, { once: true });
 
     grid.appendChild(img);
   }
