@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ringelův statek | Ubytování Vernéřovice</title>
-  <meta name="description" content="Ringelův statek ve Vernéřovicích v CHKO Broumovsko. Ubytování až pro 11 osob, oplocená zahrada, koupací sud s vířivkou." />
+  <title>Ringelův statek | Ubytování Vernéřovice s koupacím sudem</title>
+  <meta name="description" content="Klidné ubytování až pro 11 osob v CHKO Broumovsko. Užijte si dokonalý odpočinek v našem venkovním koupacím sudu s vířivkou." />
   
-  <meta property="og:title" content="Ringelův statek | Ubytování Vernéřovice" />
+  <meta property="og:title" content="Ringelův statek | Ubytování s koupacím sudem" />
   <meta property="og:description" content="Klidné ubytování pro 11 osob v srdci Broumovska. Přijeďte si odpočinout do historické chalupy s vířivkou." />
   <meta property="og:image" content="https://mpe0707.github.io/Ringeluvstatek/assets/hero.jpg" />
   <meta property="og:type" content="website" />
@@ -139,29 +139,65 @@
     }
 
     .badges{
-      display:grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      display:flex;
+      flex-wrap: wrap;
       gap: 10px;
-      margin-top: 10px;
+      margin-top: 15px;
     }
     .badge{
-      padding: 12px;
+      padding: 12px 16px;
       border-radius: 16px;
       border: 1px solid rgba(255,255,255,0.20);
       background: rgba(255,255,255,0.10);
       backdrop-filter: blur(10px);
     }
-    .badge-title{ font-size: 12px; font-weight: 900; color: rgba(255,255,255,0.82); }
-    .badge-value{ font-weight: 950; margin-top: 2px; color: #fff; }
+    .badge.highlight {
+      background: rgba(217, 119, 6, 0.85);
+      border-color: #f59e0b;
+      box-shadow: 0 8px 20px rgba(217, 119, 6, 0.4);
+    }
+    .badge.highlight .badge-title { color: #fef3c7; }
+    
+    .badge-title{ font-size: 12px; font-weight: 900; color: rgba(255,255,255,0.82); text-transform: uppercase; letter-spacing: 0.05em; }
+    .badge-value{ font-weight: 950; margin-top: 2px; color: #fff; font-size: 15px;}
 
     /* Sections */
-    .section{ padding: 54px 0; }
+    .section{ padding: 64px 0; }
     .section.alt{
       background: var(--bg-alt);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-    .section h2{ margin: 0 0 12px 0; font-size: 28px; letter-spacing: -0.01em; }
+    /* VIP SEKCE - WELLNESS */
+    .section.vip {
+      background: var(--brand);
+      color: white;
+    }
+    .section h2{ margin: 0 0 16px 0; font-size: 32px; letter-spacing: -0.01em; }
+    .section.vip h2 { color: white; }
+    
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .vip-image {
+      border-radius: 24px;
+      box-shadow: 0 24px 50px rgba(0,0,0,0.4);
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+    .check-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0 0;
+      font-weight: 600;
+      font-size: 1.1em;
+    }
+    .check-list li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+    .check-list li::before { content: "✓"; color: #f59e0b; font-weight: bold; font-size: 1.2em; }
 
     .grid-list{
       display:grid;
@@ -175,8 +211,10 @@
       background: rgba(255,255,255,0.70);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 12px 14px;
+      padding: 16px;
       font-weight: 800;
+      display: flex;
+      align-items: center;
     }
 
     .cards{
@@ -189,7 +227,7 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 22px;
+      padding: 24px;
       box-shadow: 0 8px 22px rgba(31,41,55,0.06);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
@@ -197,14 +235,44 @@
       transform: translateY(-5px);
       box-shadow: 0 12px 28px rgba(31,41,55,0.12);
     }
-    .price{ font-size: 22px; font-weight: 950; color: var(--brand); }
+    .price{ font-size: 24px; font-weight: 950; color: var(--brand); margin-top: 10px;}
 
-    /* Gallery */
+    /* Filtr galerie */
+    .gallery-filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .filter-btn {
+      background: rgba(255,255,255,0.6);
+      border: 1px solid var(--border);
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: 800;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 14px;
+    }
+    .filter-btn:hover {
+      color: var(--text);
+      border-color: var(--brand);
+      background: #fff;
+    }
+    .filter-btn.active {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand);
+      box-shadow: 0 4px 12px rgba(47,107,79,0.3);
+    }
+
+    /* Galerie */
     .gallery{
       display:grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 16px;
+      gap: 12px;
     }
     .gallery-img{
       border-radius: 16px;
@@ -213,7 +281,9 @@
       object-fit: cover;
       cursor: zoom-in;
       width: 100%;
+      transition: opacity 0.2s;
     }
+    .gallery-img:hover { opacity: 0.9; }
 
     /* Map & Contact */
     .map-container {
@@ -232,7 +302,7 @@
       font-weight: 900;
       color: var(--brand);
       text-decoration: none;
-      font-size: 1.1em;
+      font-size: 1.2em;
     }
     .mail-link:hover { text-decoration: underline; }
 
@@ -241,48 +311,59 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding: 14px 22px;
+      padding: 16px 28px;
       border-radius: 14px;
       font-weight: 900;
       text-decoration:none;
       cursor: pointer;
+      font-size: 16px;
     }
     .button.primary{
       background: var(--brand);
       color:#fff;
       box-shadow: 0 8px 20px rgba(47,107,79,0.3);
+      transition: background 0.2s, transform 0.2s;
     }
-    .button.primary:hover{ background: #25573f; }
+    .button.primary:hover{ background: #25573f; transform: translateY(-2px); }
+    
+    .button.secondary {
+      background: white;
+      color: var(--brand);
+      margin-top: 20px;
+    }
 
     /* Footer */
     .site-footer{
       padding: 30px 0;
       border-top: 1px solid var(--border);
-      background: var(--brand);
+      background: #111827; 
       color: white;
     }
-    .site-footer .muted { color: rgba(255,255,255,0.7); text-decoration: none; }
+    .site-footer .muted { color: rgba(255,255,255,0.5); text-decoration: none; }
 
     /* Lightbox */
     .lightbox{
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.92);
+      background: rgba(0,0,0,0.95);
       display: none;
       align-items: center;
       justify-content: center;
       z-index: 999;
     }
     .lightbox.is-open{ display:flex; }
-    .lightbox-img{ max-width: 90vw; max-height: 85vh; border-radius: 12px; }
-    .lightbox-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 40px; cursor: pointer; }
+    .lightbox-img{ max-width: 90vw; max-height: 85vh; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.5);}
+    .lightbox-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 40px; cursor: pointer; opacity: 0.7;}
+    .lightbox-close:hover { opacity: 1; }
     .lightbox-nav { position: absolute; width: 100%; display: flex; justify-content: space-between; padding: 0 20px; pointer-events: none; }
-    .lightbox-btn { pointer-events: auto; background: rgba(255,255,255,0.1); border: none; color: white; font-size: 40px; padding: 10px 20px; border-radius: 10px; cursor: pointer; }
+    .lightbox-btn { pointer-events: auto; background: rgba(255,255,255,0.1); border: none; color: white; font-size: 40px; padding: 10px 20px; border-radius: 10px; cursor: pointer; transition: background 0.2s;}
+    .lightbox-btn:hover { background: rgba(255,255,255,0.2); }
 
     @media (max-width: 980px){
-      .badges{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .cards, .grid-list, .contact-grid { grid-template-columns: 1fr; }
+      .badges{ flex-direction: column; align-items: stretch; }
+      .cards, .grid-list, .contact-grid, .split-grid { grid-template-columns: 1fr; }
       .gallery{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .vip-image { height: 250px; }
     }
   </style>
 </head>
@@ -294,11 +375,11 @@
     <div class="logo">Ringelův statek</div>
     <nav class="nav">
       <a href="#o-nas">O statku</a>
+      <a href="#relax">Wellness</a>
       <a href="#vybaveni">Vybavení</a>
       <a href="#galerie">Galerie</a>
       <a href="#vylety">Výlety</a>
-      <a href="#ceny">Ceník</a>
-      <a class="cta" href="#rezervace">Rezervace</a>
+      <a class="cta" href="#rezervace">Ceník & Rezervace</a>
     </nav>
   </div>
 </header>
@@ -315,12 +396,15 @@
     <div class="hero-content">
       <div class="container">
         <h1>Ringelův statek ve Vernéřovicích</h1>
-        <p class="lead">Klidné ubytování v CHKO Broumovsko pro až 11 osob.</p>
+        <p class="lead">Klidné ubytování v CHKO Broumovsko pro až 11 osob s privátním wellness.</p>
         <div class="badges">
+          <div class="badge highlight">
+            <div class="badge-title">Top vybavení</div>
+            <div class="badge-value">Koupací sud s vířivkou</div>
+          </div>
           <div class="badge"><div class="badge-title">Kapacita</div><div class="badge-value">až 11 osob</div></div>
           <div class="badge"><div class="badge-title">Ložnice</div><div class="badge-value">4</div></div>
-          <div class="badge"><div class="badge-title">Koupelny</div><div class="badge-value">2</div></div>
-          <div class="badge"><div class="badge-title">Parkování</div><div class="badge-value">až 5 aut</div></div>
+          <div class="badge"><div class="badge-title">Zahrada</div><div class="badge-value">Oplocená</div></div>
         </div>
       </div>
     </div>
@@ -331,27 +415,59 @@
       <h2>O statku</h2>
       <p>Ringelův statek je prostorná chalupa z počátku 19. století s charakteristickými znaky typickými pro tuto oblast – jedná se o tradiční broumovský klasicistní statek. Najdete nás na krásném a klidném místě téměř na konci vesničky Vernéřovice v CHKO Broumovsko. Přímo ze zahrady se nabízí nádherný výhled na okolní louky a blízký les.</p>
       <p>Statek je ideálním místem pro strávení dovolené 2 až 3 rodin nebo větší skupiny přátel. Najdete zde vše, co k pohodové dovolené potřebujete. Uvnitř na vás čeká velká hala s jídelním stolem, prostorná obývací místnost, čtyři ložnice a pro zahřátí také krbová kamna. K dispozici jsou také různé hry k zapůjčení.</p>
-      <p>Venku si můžete užívat velkou oplocenou zahradu a travnatou plochu před domem. K relaxaci poslouží koupací sud s vířivkou vytápěný dřevem, zahradní nábytek, gril i ohniště. Pohodlně u nás navíc zaparkujete až s 5 auty.</p>
+    </div>
+  </section>
+
+  <section id="relax" class="section vip">
+    <div class="container split-grid">
+      <div>
+        <h2>Dokonalý relax pod hvězdami</h2>
+        <p style="font-size: 1.1em; line-height: 1.7; color: rgba(255,255,255,0.9);">
+          Představte si večer po celodenním výletu ve skalách. Voda má příjemných 38°C, ve vzduchu voní hořící dřevo a vy se s pohárkem vína díváte do klidné přírody Broumovska. 
+          Náš venkovní koupací sud je absolutním hitem a srdcem naší zahrady.
+        </p>
+        <ul class="check-list">
+          <li>Vestavěné masážní trysky (vířivka)</li>
+          <li>Celoroční provoz</li>
+          <li>Autentické vytápění dřevem</li>
+          <li>Dokonalé soukromí na oplocené zahradě</li>
+        </ul>
+        <a href="#rezervace" class="button secondary">Zajistit si pobyt</a>
+      </div>
+      <div>
+        <img src="assets/wellness-1.jpeg" alt="Koupací sud s vířivkou" class="vip-image" onerror="this.src='assets/wellness-1.jpg'" />
+      </div>
     </div>
   </section>
 
   <section id="vybaveni" class="section alt">
     <div class="container">
-      <h2>Vybavení</h2>
+      <h2>Další vybavení chalupy</h2>
       <ul class="grid-list">
-        <li>4 ložnice</li>
-        <li>Koupací sud s vířivkou</li>
-        <li>Oplocená zahrada</li>
-        <li>WiFi & Smart TV</li>
-        <li>Myčka & Kávovar</li>
-        <li>Venkovní gril</li>
+        <li>🛏️ 4 prostorné ložnice</li>
+        <li>🛁 2 koupelny s WC</li>
+        <li>🍳 Plně vybavená kuchyň</li>
+        <li>☕ Kávovar Nespresso</li>
+        <li>🔥 Venkovní gril a ohniště</li>
+        <li>📶 Rychlá WiFi & Smart TV</li>
+        <li>🅿️ Parkování až pro 5 aut</li>
+        <li>🐕 Domácí mazlíčci vítáni</li>
       </ul>
     </div>
   </section>
 
   <section id="galerie" class="section">
     <div class="container">
-      <h2>Galerie</h2>
+      <h2>Fotogalerie</h2>
+      
+      <div class="gallery-filters" id="filterContainer">
+        <button class="filter-btn active" data-filter="all">Vše</button>
+        <button class="filter-btn" data-filter="exterier">Exteriér a Zahrada</button>
+        <button class="filter-btn" data-filter="interier">Interiér</button>
+        <button class="filter-btn" data-filter="wellness">Koupací sud</button>
+        <button class="filter-btn" data-filter="okoli">Okolí a Výlety</button>
+      </div>
+
       <div class="gallery" id="galleryGrid"></div>
     </div>
   </section>
@@ -362,15 +478,15 @@
       <div class="cards">
         <div class="card">
           <h3>Adršpašské skály</h3>
-          <p>Známé skalní město přibližně 25 minut autem.</p>
+          <p>Známé skalní město plné fascinujících útvarů, přibližně 25 minut autem.</p>
         </div>
         <div class="card">
           <h3>Broumovské stěny</h3>
-          <p>Skalní vyhlídky a krásné turistické trasy.</p>
+          <p>Klidnější alternativa k Adršpachu. Nádherné skalní vyhlídky a turistické trasy.</p>
         </div>
         <div class="card">
           <h3>Broumovský klášter</h3>
-          <p>Historická dominanta regionu.</p>
+          <p>Historická dominanta regionu, která nabízí skvělé prohlídky a kulturní akce.</p>
         </div>
       </div>
     </div>
@@ -380,20 +496,32 @@
     <div class="container">
       <h2>Ceník</h2>
       <div class="cards">
-        <div class="card"><h3>Letní sezóna</h3><p class="price">28 500 Kč / týden</p></div>
-        <div class="card"><h3>Mimo sezónu</h3><p class="price">24 500 Kč / týden</p></div>
-        <div class="card"><h3>Víkend</h3><p class="price">9 500 Kč</p></div>
+        <div class="card">
+          <h3>Letní sezóna</h3>
+          <p class="muted">červenec, srpen</p>
+          <p class="price">28 500 Kč / týden</p>
+        </div>
+        <div class="card">
+          <h3>Mimo sezónu</h3>
+          <p class="muted">květen, červen, září, říjen</p>
+          <p class="price">24 500 Kč / týden</p>
+        </div>
+        <div class="card">
+          <h3>Víkend</h3>
+          <p class="muted">mimo hlavní sezónu</p>
+          <p class="price">9 500 Kč</p>
+        </div>
       </div>
+      <p class="muted" style="margin-top: 15px; text-align: center;">Použití koupacího sudu je za drobný příplatek dle délky pobytu. Energie a dřevo jsou v ceně.</p>
     </div>
   </section>
 
   <section id="rezervace" class="section alt">
-    <div class="container" style="text-align: center;">
-      <h2>Rezervace</h2>
-      <p>Pro zjištění volných termínů a online rezervaci využijte portál e-chalupy.cz</p>
-      <br>
+    <div class="container" style="text-align: center; max-width: 600px;">
+      <h2>Rezervace pobytu</h2>
+      <p style="font-size: 1.1em; margin-bottom: 30px;">Pro zjištění volných termínů a vytvoření online rezervace využijte náš profil na portálu e-chalupy.cz.</p>
       <a class="button primary" href="https://www.e-chalupy.cz/chalupa-vernerovice-ubytovani-statek-o8519" target="_blank" rel="noopener">
-        Přejít na kalendář obsazenosti
+        Otevřít kalendář obsazenosti
       </a>
     </div>
   </section>
@@ -404,13 +532,15 @@
       <div class="contact-grid">
         <div class="card">
           <h3>Napište nám</h3>
-          <p>Máte dotaz k vybavení nebo volným termínům? Rádi vám odpovíme na e-mailu:</p>
+          <p>Máte dotaz k vybavení nebo k pobytu s pejskem? Rádi vám obratem odpovíme na e-mailu:</p>
           <a href="mailto:info@ringeluvstatek.cz" class="mail-link">info@ringeluvstatek.cz</a>
-          <p style="margin-top: 20px;"><strong>Adresa:</strong><br>Vernéřovice 34, 549 82 Vernéřovice, Česká Republika</p>
+          <div style="margin-top: 30px;">
+            <p><strong>Adresa chalupy:</strong><br>Vernéřovice 34<br>549 82 Vernéřovice<br>CHKO Broumovsko</p>
+          </div>
         </div>
         <div class="card" style="padding: 10px;">
           <div class="map-container">
-            <iframe width="100%" height="300" frameborder="0" style="border:0" loading="lazy" allowfullscreen src="https://maps.google.com/maps?q=Vern%C3%A9%C5%99ovice%2034,%20549%2082%20Vern%C3%A9%C5%99ovice&t=&z=14&ie=UTF8&iwloc=&output=embed"></iframe>
+            <iframe width="100%" height="300" frameborder="0" style="border:0" loading="lazy" allowfullscreen src="https://maps.google.com/maps?q=Vern%C3%A9%C5%99ovice%2034,%20549%2082&t=&z=14&ie=UTF8&iwloc=&output=embed"></iframe>
           </div>
         </div>
       </div>
@@ -426,7 +556,7 @@
 </footer>
 
 <div id="lightbox" class="lightbox">
-  <span class="lightbox-close" id="closeBtn">&times;</span>
+  <span class="lightbox-close" id="closeBtn">×</span>
   <div class="lightbox-nav">
     <button class="lightbox-btn" id="prevBtn">‹</button>
     <button class="lightbox-btn" id="nextBtn">›</button>
@@ -442,70 +572,95 @@
   const lightboxImg = document.getElementById("lightboxImg");
   let currentIndex = 0;
 
-  // Spolehlivý skript, který nevytuhne, když některá fotka chybí
-  for (let i = 1; i <= 40; i++) {
-    // Vytvoříme si v gridu neviditelný prvek, aby se fotky nepomíchaly, pokud se jedna stáhne rychleji než jiná
-    const placeholder = document.createElement("div");
-    placeholder.style.display = "none";
-    grid.appendChild(placeholder);
+  // Kategorie pro filtrování
+  const categories = ['exterier', 'interier', 'wellness', 'okoli'];
+  const maxPhotosPerCategory = 25;
 
-    const img = new Image();
-    let triedJpg = false;
-    let triedJpgUpper = false;
-    let triedPng = false;
+  // Načítání fotek podle kategorií
+  categories.forEach(category => {
+    for (let i = 1; i <= maxPhotosPerCategory; i++) {
+      const placeholder = document.createElement("div");
+      placeholder.style.display = "none";
+      placeholder.dataset.category = category; // Štítek pro skrytý element
+      grid.appendChild(placeholder);
 
-    img.onload = () => {
-      // Když je fotka v pořádku načtena, vyměníme ji za ten neviditelný prvek
-      img.className = "gallery-img";
-      img.alt = "Fotogalerie " + i;
-      placeholder.replaceWith(img); 
-    };
+      const img = new Image();
+      let triedJpg = false;
+      let triedJpgUpper = false;
+      let triedPng = false;
 
-    img.onerror = () => {
-      // Pokud spadl .jpeg, zkoušíme postupně další a další formáty
-      if (!triedJpg) {
-        triedJpg = true;
-        img.src = "assets/gallery-" + i + ".jpg";
-      } else if (!triedJpgUpper) {
-        triedJpgUpper = true;
-        img.src = "assets/gallery-" + i + ".JPG";
-      } else if (!triedPng) {
-        triedPng = true;
-        img.src = "assets/gallery-" + i + ".png";
-      } else {
-        // Obrazek fakt nikde není (nebo došly čísla), takže prázdný "chlíveček" smažeme
-        placeholder.remove(); 
-      }
-    };
+      img.onload = () => {
+        img.className = "gallery-img";
+        img.alt = "Fotogalerie - " + category;
+        img.dataset.category = category; // Klíčový štítek pro funkčnost filtru
+        placeholder.replaceWith(img); 
+      };
 
-    // Vždycky začneme formátem .jpeg
-    img.src = "assets/gallery-" + i + ".jpeg";
+      img.onerror = () => {
+        if (!triedJpg) {
+          triedJpg = true;
+          img.src = "assets/" + category + "-" + i + ".jpg";
+        } else if (!triedJpgUpper) {
+          triedJpgUpper = true;
+          img.src = "assets/" + category + "-" + i + ".JPG";
+        } else if (!triedPng) {
+          triedPng = true;
+          img.src = "assets/" + category + "-" + i + ".png";
+        } else {
+          placeholder.remove(); 
+        }
+      };
+
+      img.src = "assets/" + category + "-" + i + ".jpeg";
+    }
+  });
+
+  // Logika pro filtrování
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Změna barvy aktivního tlačítka
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      const filterValue = btn.getAttribute('data-filter');
+      const allImages = grid.querySelectorAll('img');
+
+      // Schování/zobrazení fotek
+      allImages.forEach(img => {
+        if (filterValue === 'all' || img.dataset.category === filterValue) {
+          img.style.display = 'block';
+        } else {
+          img.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Získání pouze těch fotek, které jsou aktuálně vyfiltrované a viditelné
+  function getVisibleImages() {
+    return Array.from(grid.querySelectorAll("img")).filter(img => window.getComputedStyle(img).display !== "none");
   }
 
-  // Funkce, která si vytáhne všechny fotky, co se fyzicky zobrazily (ty správné)
-  function getValidImages() {
-    return Array.from(grid.querySelectorAll("img"));
-  }
-
-  // Kliknutí na obrázek v mřížce
+  // Kliknutí na fotku - otevře Lightbox
   grid.addEventListener("click", (e) => {
     if (e.target.tagName === "IMG") {
-      const validImages = getValidImages();
-      currentIndex = validImages.indexOf(e.target);
+      const visibleImages = getVisibleImages();
+      currentIndex = visibleImages.indexOf(e.target);
       if (currentIndex > -1) {
-        lightboxImg.src = validImages[currentIndex].src;
+        lightboxImg.src = visibleImages[currentIndex].src;
         lightbox.classList.add("is-open");
         document.body.style.overflow = "hidden";
       }
     }
   });
 
-  // Posouvání fotek v Lightboxu doleva/doprava
+  // Posun fotek v Lightboxu
   function updateLightbox(offset) {
-    const validImages = getValidImages();
-    if (validImages.length === 0) return;
-    currentIndex = (currentIndex + offset + validImages.length) % validImages.length;
-    lightboxImg.src = validImages[currentIndex].src;
+    const visibleImages = getVisibleImages();
+    if (visibleImages.length === 0) return;
+    currentIndex = (currentIndex + offset + visibleImages.length) % visibleImages.length;
+    lightboxImg.src = visibleImages[currentIndex].src;
   }
 
   document.getElementById("closeBtn").addEventListener("click", () => {
