@@ -15,7 +15,7 @@
       --brand:#2f6b4f;
       --card:#ffffff;
       --border: rgba(31,41,55,0.10);
-      --shadow: 0 12px 34px rgba(31,41,55,0.12);
+      --shadow: 0 18px 48px rgba(0,0,0,0.18);
       --radius: 18px;
       --max: 1120px;
     }
@@ -39,7 +39,7 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(251,250,247,0.90);
+      background: rgba(255,255,255,0.90);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
     }
@@ -150,14 +150,15 @@
       margin-top: 2px;
     }
 
+    /* HERO IMAGE */
     .hero-media{
       position: relative;
       border-radius: 22px;
       overflow: hidden;
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
-      background: rgba(255,255,255,0.35);
-      min-height: 520px;
+      min-height: 560px;
+      background: transparent; /* removed grey background */
     }
     .hero-media img{
       width: 100%;
@@ -169,7 +170,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.00) 40%, rgba(0,0,0,0.22) 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,0.00) 35%, rgba(0,0,0,0.24) 100%);
       pointer-events:none;
     }
     .hero-caption{
@@ -246,12 +247,13 @@
       box-shadow: 0 8px 18px rgba(31,41,55,0.06);
       aspect-ratio: 1 / 1;
       object-fit: cover;
+      cursor: zoom-in;
     }
 
     .site-footer{
       padding: 22px 0;
       border-top: 1px solid var(--border);
-      background: rgba(251,250,247,0.92);
+      background: rgba(255,255,255,0.92);
     }
     .footer-inner{
       display:flex;
@@ -261,6 +263,69 @@
     }
     .footer-inner a{ text-decoration:none; }
 
+    /* LIGHTBOX */
+    .lightbox{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 18px;
+    }
+    .lightbox.is-open{ display:flex; }
+
+    .lightbox-img{
+      max-width: min(1100px, 92vw);
+      max-height: 86vh;
+      border-radius: 16px;
+      box-shadow: 0 18px 52px rgba(0,0,0,0.45);
+      cursor: zoom-out;
+    }
+    .lightbox-close{
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.10);
+      color: #fff;
+      font-size: 26px;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .lightbox-close:hover{ background: rgba(255,255,255,0.16); }
+
+    .lightbox-nav{
+      position:absolute;
+      left: 0;
+      right: 0;
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 12px;
+      pointer-events: none;
+    }
+    .lightbox-btn{
+      pointer-events: all;
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.10);
+      color:#fff;
+      font-size: 30px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .lightbox-btn:hover{ background: rgba(255,255,255,0.16); }
+
     @media (max-width: 980px){
       .hero-grid{ grid-template-columns: 1fr; }
       .badges{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -268,6 +333,7 @@
       .grid-list{ grid-template-columns: 1fr; }
       .gallery{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .hero-media{ min-height: 420px; }
+      .lightbox-nav{ padding: 0 6px; }
     }
   </style>
 </head>
@@ -328,9 +394,7 @@
           <source srcset="assets/hero.jpeg" type="image/jpeg" />
           <img src="assets/hero.jpg" alt="Ringelův statek, exteriér" loading="eager" />
         </picture>
-        <div class="hero-caption">
-          Ringelův statek, Vernéřovice, CHKO Broumovsko
-        </div>
+        <div class="hero-caption">Ringelův statek, Vernéřovice, CHKO Broumovsko</div>
       </div>
     </div>
   </section>
@@ -363,9 +427,6 @@
   <section id="galerie" class="section">
     <div class="container">
       <h2>Galerie</h2>
-      <p class="muted small">
-        Fotky dej do složky assets a pojmenuj je gallery-1.jpeg, gallery-2.jpeg a tak dál.
-      </p>
       <div class="gallery" id="galleryGrid" aria-label="Fotogalerie"></div>
     </div>
   </section>
@@ -396,11 +457,11 @@
       <div class="cards">
         <div class="card">
           <h3>Letní sezóna</h3>
-          <p class="price">28 500 Kč / týden</p>
+          <p class="price">28 500 Kč za týden</p>
         </div>
         <div class="card">
           <h3>Mimo sezónu</h3>
-          <p class="price">24 500 Kč / týden</p>
+          <p class="price">24 500 Kč za týden</p>
         </div>
         <div class="card">
           <h3>Víkend</h3>
@@ -413,7 +474,7 @@
   <section id="rezervace" class="section alt">
     <div class="container">
       <h2>Rezervace</h2>
-      <p>Rezervace probíhá přes e-chalupy.</p>
+      <p>Rezervace probíhá přes e chalupy.</p>
       <a class="button primary" href="https://www.e-chalupy.cz/chalupa-vernerovice-ubytovani-statek-o8519" target="_blank" rel="noopener">
         Otevřít rezervaci
       </a>
@@ -446,11 +507,44 @@
   </div>
 </footer>
 
+<div id="lightbox" class="lightbox" aria-hidden="true">
+  <div class="lightbox-nav" aria-label="Ovládání galerie">
+    <button class="lightbox-btn" id="prevBtn" aria-label="Předchozí fotka">‹</button>
+    <button class="lightbox-btn" id="nextBtn" aria-label="Další fotka">›</button>
+  </div>
+  <div class="lightbox-close" id="closeBtn" aria-label="Zavřít">×</div>
+  <img class="lightbox-img" id="lightboxImg" alt="Zvětšená fotka" />
+</div>
+
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 
   const grid = document.getElementById("galleryGrid");
   const maxPhotos = 24;
+
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightboxImg");
+  const closeBtn = document.getElementById("closeBtn");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  let images = [];
+  let currentIndex = 0;
+
+  function showLightbox(index){
+    if (!images.length) return;
+    currentIndex = (index + images.length) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function hideLightbox(){
+    lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
 
   function addPhoto(i){
     const img = new Image();
@@ -458,14 +552,21 @@
     img.alt = "Fotogalerie " + i;
     img.className = "gallery-img";
 
-    img.onerror = function(){
-      if (img && img.parentNode) img.parentNode.removeChild(img);
-    };
-
     img.src = "assets/gallery-" + i + ".jpeg";
     img.addEventListener("error", function(){
       img.src = "assets/gallery-" + i + ".jpg";
     }, { once: true });
+
+    img.addEventListener("load", function(){
+      images.push(img);
+      img.addEventListener("click", function(){
+        showLightbox(images.indexOf(img));
+      });
+    });
+
+    img.addEventListener("error", function(){
+      if (img && img.parentNode) img.parentNode.removeChild(img);
+    });
 
     grid.appendChild(img);
   }
@@ -473,6 +574,29 @@
   for (let i = 1; i <= maxPhotos; i++){
     addPhoto(i);
   }
+
+  closeBtn.addEventListener("click", hideLightbox);
+
+  lightbox.addEventListener("click", function(e){
+    if (e.target === lightbox || e.target === lightboxImg) hideLightbox();
+  });
+
+  prevBtn.addEventListener("click", function(e){
+    e.stopPropagation();
+    showLightbox(currentIndex - 1);
+  });
+
+  nextBtn.addEventListener("click", function(e){
+    e.stopPropagation();
+    showLightbox(currentIndex + 1);
+  });
+
+  document.addEventListener("keydown", function(e){
+    if (!lightbox.classList.contains("is-open")) return;
+    if (e.key === "Escape") hideLightbox();
+    if (e.key === "ArrowLeft") showLightbox(currentIndex - 1);
+    if (e.key === "ArrowRight") showLightbox(currentIndex + 1);
+  });
 </script>
 
 </body>
