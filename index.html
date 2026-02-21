@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ringelův statek | Ubytování Vernéřovice</title>
   <meta name="description" content="Ringelův statek ve Vernéřovicích v CHKO Broumovsko. Ubytování až pro 11 osob, oplocená zahrada, koupací sud s vířivkou." />
+  
+  <meta property="og:title" content="Ringelův statek | Ubytování Vernéřovice" />
+  <meta property="og:description" content="Klidné ubytování pro 11 osob v srdci Broumovska. Přijeďte si odpočinout do historické chalupy s vířivkou." />
+  <meta property="og:image" content="https://mpe0707.github.io/Ringeluvstatek/assets/hero.jpg" />
+  <meta property="og:type" content="website" />
 
   <style>
     :root{
@@ -84,7 +89,7 @@
       color:#fff;
     }
 
-    /* HERO Variant A */
+    /* HERO */
     .hero{
       position: relative;
       min-height: clamp(520px, 72vh, 760px);
@@ -118,52 +123,20 @@
       padding: 56px 0 44px 0;
       color: #fff;
     }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-      max-width: 640px;
-    }
     .hero h1{
       font-size: clamp(34px, 4.2vw, 60px);
       line-height: 1.05;
       margin: 0;
       letter-spacing: -0.02em;
-      text-shadow: 0 18px 40px rgba(0,0,0,0.35);
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
     }
     .hero .lead{
       font-size: 18px;
       color: rgba(255,255,255,0.86);
-      margin: 0;
+      margin: 10px 0;
       max-width: 56ch;
       text-shadow: 0 14px 30px rgba(0,0,0,0.35);
     }
-    .hero-actions{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 8px;
-    }
-    .button{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 12px 16px;
-      border-radius: 14px;
-      font-weight: 900;
-      text-decoration:none;
-      border: 1px solid rgba(255,255,255,0.22);
-      background: rgba(255,255,255,0.10);
-      color:#fff;
-      backdrop-filter: blur(8px);
-    }
-    .button:hover{ background: rgba(255,255,255,0.16); }
-    .button.primary{
-      background: var(--brand);
-      border-color: transparent;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.35);
-    }
-    .button.primary:hover{ background: #25573f; }
 
     .badges{
       display:grid;
@@ -178,43 +151,17 @@
       background: rgba(255,255,255,0.10);
       backdrop-filter: blur(10px);
     }
-    .badge-title{
-      font-size: 12px;
-      font-weight: 900;
-      color: rgba(255,255,255,0.82);
-    }
-    .badge-value{
-      font-weight: 950;
-      margin-top: 2px;
-      color: #fff;
-    }
-
-    .hero-bottom{
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:0;
-      height: 84px;
-      background: linear-gradient(180deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.30) 100%);
-      pointer-events:none;
-    }
+    .badge-title{ font-size: 12px; font-weight: 900; color: rgba(255,255,255,0.82); }
+    .badge-value{ font-weight: 950; margin-top: 2px; color: #fff; }
 
     /* Sections */
-    .section{
-      padding: 54px 0;
-    }
+    .section{ padding: 54px 0; }
     .section.alt{
       background: var(--bg-alt);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-    .section h2{
-      margin: 0 0 12px 0;
-      font-size: 28px;
-      letter-spacing: -0.01em;
-    }
-    .muted{ color: var(--muted); }
-    .small{ font-size: 14px; }
+    .section h2{ margin: 0 0 12px 0; font-size: 28px; letter-spacing: -0.01em; }
 
     .grid-list{
       display:grid;
@@ -242,13 +189,15 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 18px;
+      padding: 22px;
       box-shadow: 0 8px 22px rgba(31,41,55,0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .price{
-      font-size: 22px;
-      font-weight: 950;
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(31,41,55,0.12);
     }
+    .price{ font-size: 22px; font-weight: 950; color: var(--brand); }
 
     /* Gallery */
     .gallery{
@@ -260,104 +209,79 @@
     .gallery-img{
       border-radius: 16px;
       border: 1px solid var(--border);
-      box-shadow: 0 8px 18px rgba(31,41,55,0.06);
       aspect-ratio: 1 / 1;
       object-fit: cover;
       cursor: zoom-in;
     }
 
+    /* Map & Contact */
+    .map-container {
+      width: 100%;
+      height: 300px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .mail-link {
+      font-weight: 900;
+      color: var(--brand);
+      text-decoration: none;
+      font-size: 1.1em;
+    }
+    .mail-link:hover { text-decoration: underline; }
+
+    /* Buttons */
+    .button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: 900;
+      text-decoration:none;
+      cursor: pointer;
+    }
+    .button.primary{
+      background: var(--brand);
+      color:#fff;
+      box-shadow: 0 8px 20px rgba(47,107,79,0.3);
+    }
+    .button.primary:hover{ background: #25573f; }
+
     /* Footer */
     .site-footer{
-      padding: 22px 0;
+      padding: 30px 0;
       border-top: 1px solid var(--border);
-      background: rgba(255,255,255,0.92);
+      background: var(--brand);
+      color: white;
     }
-    .footer-inner{
-      display:flex;
-      justify-content: space-between;
-      align-items:center;
-      gap: 14px;
-    }
-    .footer-inner a{ text-decoration:none; }
+    .site-footer .muted { color: rgba(255,255,255,0.7); text-decoration: none; }
 
     /* Lightbox */
     .lightbox{
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.88);
+      background: rgba(0,0,0,0.92);
       display: none;
       align-items: center;
       justify-content: center;
       z-index: 999;
-      padding: 18px;
     }
     .lightbox.is-open{ display:flex; }
-
-    .lightbox-img{
-      max-width: min(1100px, 92vw);
-      max-height: 86vh;
-      border-radius: 16px;
-      box-shadow: 0 18px 52px rgba(0,0,0,0.45);
-      cursor: zoom-out;
-    }
-    .lightbox-close{
-      position: absolute;
-      top: 14px;
-      right: 16px;
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.22);
-      background: rgba(255,255,255,0.10);
-      color: #fff;
-      font-size: 26px;
-      line-height: 1;
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      user-select: none;
-    }
-    .lightbox-close:hover{ background: rgba(255,255,255,0.16); }
-
-    .lightbox-nav{
-      position:absolute;
-      left: 0;
-      right: 0;
-      display:flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 12px;
-      pointer-events: none;
-    }
-    .lightbox-btn{
-      pointer-events: all;
-      width: 52px;
-      height: 52px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.22);
-      background: rgba(255,255,255,0.10);
-      color:#fff;
-      font-size: 30px;
-      cursor: pointer;
-      user-select: none;
-    }
-    .lightbox-btn:hover{ background: rgba(255,255,255,0.16); }
+    .lightbox-img{ max-width: 90vw; max-height: 85vh; border-radius: 12px; }
+    .lightbox-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 40px; cursor: pointer; }
+    .lightbox-nav { position: absolute; width: 100%; display: flex; justify-content: space-between; padding: 0 20px; pointer-events: none; }
+    .lightbox-btn { pointer-events: auto; background: rgba(255,255,255,0.1); border: none; color: white; font-size: 40px; padding: 10px 20px; border-radius: 10px; cursor: pointer; }
 
     @media (max-width: 980px){
-      .hero-content{ padding: 40px 0 36px 0; }
       .badges{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .cards{ grid-template-columns: 1fr; }
-      .grid-list{ grid-template-columns: 1fr; }
+      .cards, .grid-list, .contact-grid { grid-template-columns: 1fr; }
       .gallery{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .lightbox-nav{ padding: 0 6px; }
-      .hero-overlay{
-        background: linear-gradient(180deg,
-          rgba(0,0,0,0.60) 0%,
-          rgba(0,0,0,0.40) 45%,
-          rgba(0,0,0,0.12) 80%,
-          rgba(0,0,0,0.00) 100%);
-      }
-      .hero-grid{ max-width: 700px; }
     }
   </style>
 </head>
@@ -379,56 +303,29 @@
 </header>
 
 <main id="top">
-
-  <section class="hero" aria-label="Úvodní fotografie">
+  <section class="hero">
     <div class="hero-media">
-      <picture>
-        <source srcset="assets/hero.jpeg" type="image/jpeg" />
-        <img src="assets/hero.jpg" alt="Ringelův statek, exteriér" loading="eager" />
-      </picture>
+      <img src="assets/hero.jpg" alt="Ringelův statek" loading="eager" />
     </div>
     <div class="hero-overlay"></div>
-
     <div class="hero-content">
       <div class="container">
-        <div class="hero-grid">
-          <h1>Ringelův statek ve Vernéřovicích</h1>
-          <p class="lead">
-            Klidné ubytování v CHKO Broumovsko. Prostorná chalupa pro až 11 osob, oplocená zahrada,
-            koupací sud s vířivkou a výlety přímo od domu.
-          </p>
-<div class="badges" aria-label="Rychlé informace">
-            <div class="badge">
-              <div class="badge-title">Kapacita</div>
-              <div class="badge-value">až 11 osob</div>
-            </div>
-            <div class="badge">
-              <div class="badge-title">Ložnice</div>
-              <div class="badge-value">4</div>
-            </div>
-            <div class="badge">
-              <div class="badge-title">Koupelny</div>
-              <div class="badge-value">2</div>
-            </div>
-            <div class="badge">
-              <div class="badge-title">Parkování</div>
-              <div class="badge-value">až 5 aut</div>
-            </div>
-          </div>
+        <h1>Ringelův statek ve Vernéřovicích</h1>
+        <p class="lead">Klidné ubytování v CHKO Broumovsko pro až 11 osob.</p>
+        <div class="badges">
+          <div class="badge"><div class="badge-title">Kapacita</div><div class="badge-value">až 11 osob</div></div>
+          <div class="badge"><div class="badge-title">Ložnice</div><div class="badge-value">4</div></div>
+          <div class="badge"><div class="badge-title">Koupelny</div><div class="badge-value">2</div></div>
+          <div class="badge"><div class="badge-title">Parkování</div><div class="badge-value">až 5 aut</div></div>
         </div>
       </div>
     </div>
-
-    <div class="hero-bottom"></div>
   </section>
 
   <section id="o-nas" class="section">
     <div class="container">
       <h2>O statku</h2>
-      <p>
-        Ringelův statek je chalupa z počátku 19. století na klidném místě téměř na konci vesnice Vernéřovice.
-        Ideální pro rodiny a skupiny přátel.
-      </p>
+      <p>Ringelův statek je historická chalupa z počátku 19. století, citlivě zrekonstruovaná pro potřeby moderního ubytování při zachování původního rázu. Najdete nás na samotném konci klidné obce Vernéřovice.</p>
     </div>
   </section>
 
@@ -437,189 +334,123 @@
       <h2>Vybavení</h2>
       <ul class="grid-list">
         <li>4 ložnice</li>
-        <li>2 koupelny</li>
         <li>Koupací sud s vířivkou</li>
         <li>Oplocená zahrada</li>
-        <li>WiFi</li>
-        <li>Plně vybavená kuchyň</li>
+        <li>WiFi & Smart TV</li>
+        <li>Myčka & Kávovar</li>
+        <li>Venkovní gril</li>
       </ul>
-</div>
+    </div>
   </section>
 
   <section id="galerie" class="section">
     <div class="container">
       <h2>Galerie</h2>
-      <div class="gallery" id="galleryGrid" aria-label="Fotogalerie"></div>
+      <div class="gallery" id="galleryGrid"></div>
     </div>
   </section>
 
-  <section id="vylety" class="section alt">
-    <div class="container">
-      <h2>Tipy na výlety</h2>
-      <div class="cards">
-        <div class="card">
-          <h3>Adršpašské skály</h3>
-          <p>Známé skalní město přibližně 25 minut autem.</p>
-        </div>
-        <div class="card">
-          <h3>Broumovské stěny</h3>
-          <p>Skalní vyhlídky a krásné turistické trasy.</p>
-        </div>
-        <div class="card">
-          <h3>Broumovský klášter</h3>
-          <p>Historická dominanta regionu.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="ceny" class="section">
+  <section id="ceny" class="section alt">
     <div class="container">
       <h2>Ceník</h2>
       <div class="cards">
-        <div class="card">
-          <h3>Letní sezóna</h3>
-          <p class="price">28 500 Kč za týden</p>
-        </div>
-        <div class="card">
-          <h3>Mimo sezónu</h3>
-          <p class="price">24 500 Kč za týden</p>
-        </div>
-        <div class="card">
-          <h3>Víkend</h3>
-          <p class="price">9 500 Kč</p>
-        </div>
+        <div class="card"><h3>Letní sezóna</h3><p class="price">28 500 Kč / týden</p></div>
+        <div class="card"><h3>Mimo sezónu</h3><p class="price">24 500 Kč / týden</p></div>
+        <div class="card"><h3>Víkend</h3><p class="price">9 500 Kč</p></div>
       </div>
     </div>
   </section>
 
-  <section id="rezervace" class="section alt">
-    <div class="container">
+  <section id="rezervace" class="section">
+    <div class="container" style="text-align: center;">
       <h2>Rezervace</h2>
-      <p>Rezervace probíhá přes e chalupy.</p>
+      <p>Pro zjištění volných termínů a online rezervaci využijte portál e-chalupy.cz</p>
+      <br>
       <a class="button primary" href="https://www.e-chalupy.cz/chalupa-vernerovice-ubytovani-statek-o8519" target="_blank" rel="noopener">
-        Otevřít rezervaci
+        Přejít na kalendář obsazenosti
       </a>
     </div>
   </section>
 
-  <section id="kontakt" class="section">
+  <section id="kontakt" class="section alt">
     <div class="container">
-      <h2>Kontakt</h2>
-      <div class="cards">
+      <h2>Kontakt a poloha</h2>
+      <div class="contact-grid">
         <div class="card">
-          <h3>Napište nebo zavolejte</h3>
-          <p>Telefon: doplnit</p>
-          <p>Email: doplnit</p>
-          <p>Adresa: Vernéřovice, CHKO Broumovsko</p>
+          <h3>Napište nám</h3>
+          <p>Máte dotaz k vybavení nebo volným termínům? Rádi vám odpovíme na e-mailu:</p>
+          <a href="mailto:tvuj-email@seznam.cz" class="mail-link">tvuj-email@seznam.cz</a>
+          <p style="margin-top: 20px;"><strong>Adresa:</strong><br>Vernéřovice, CHKO Broumovsko</p>
         </div>
-        <div class="card">
-          <h3>Příjezd</h3>
-          <p class="muted">Sem můžeš později doplnit mapu nebo instrukce k příjezdu.</p>
+        <div class="card" style="padding: 10px;">
+          <div class="map-container">
+            <iframe width="100%" height="300" frameborder="0" src="https://en.mapy.cz/zakladni?x=16.1916320&y=50.6200000&z=14&source=muni&id=4270" style="border:0" allowfullscreen></iframe>
+          </div>
         </div>
       </div>
     </div>
   </section>
-
 </main>
 
 <footer class="site-footer">
-  <div class="container footer-inner">
-    <p class="muted">© <span id="year"></span> Ringelův statek</p>
-    <a class="muted" href="#top">Zpět nahoru</a>
+  <div class="container footer-inner" style="display: flex; justify-content: space-between; align-items: center;">
+    <p>© <span id="year"></span> Ringelův statek</p>
+    <a class="muted" href="#top">Nahoru ↑</a>
   </div>
 </footer>
 
-<div id="lightbox" class="lightbox" aria-hidden="true">
-  <div class="lightbox-nav" aria-label="Ovládání galerie">
-    <button class="lightbox-btn" id="prevBtn" aria-label="Předchozí fotka">‹</button>
-    <button class="lightbox-btn" id="nextBtn" aria-label="Další fotka">›</button>
+<div id="lightbox" class="lightbox">
+  <span class="lightbox-close" id="closeBtn">&times;</span>
+  <div class="lightbox-nav">
+    <button class="lightbox-btn" id="prevBtn">‹</button>
+    <button class="lightbox-btn" id="nextBtn">›</button>
   </div>
-  <div class="lightbox-close" id="closeBtn" aria-label="Zavřít">×</div>
-  <img class="lightbox-img" id="lightboxImg" alt="Zvětšená fotka" />
+  <img class="lightbox-img" id="lightboxImg">
 </div>
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
-
   const grid = document.getElementById("galleryGrid");
-  const maxPhotos = 24;
-
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightboxImg");
-  const closeBtn = document.getElementById("closeBtn");
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
-
   let images = [];
   let currentIndex = 0;
 
   function showLightbox(index){
-    if (!images.length) return;
     currentIndex = (index + images.length) % images.length;
     lightboxImg.src = images[currentIndex].src;
     lightbox.classList.add("is-open");
-    lightbox.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
   }
 
   function hideLightbox(){
     lightbox.classList.remove("is-open");
-    lightbox.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
   }
 
-  function addPhoto(i){
+  for (let i = 1; i <= 24; i++){
     const img = new Image();
-    img.loading = "lazy";
-    img.alt = "Fotogalerie " + i;
     img.className = "gallery-img";
-
     img.src = "assets/gallery-" + i + ".jpeg";
-    img.addEventListener("error", function(){
-      img.src = "assets/gallery-" + i + ".jpg";
-    }, { once: true });
-
-    img.addEventListener("load", function(){
-      images.push(img);
-      img.addEventListener("click", function(){
-        showLightbox(images.indexOf(img));
-      });
-    });
-
-    img.addEventListener("error", function(){
-      if (img && img.parentNode) img.parentNode.removeChild(img);
-    });
-
+    img.loading = "lazy";
+    img.onerror = () => { img.src = "assets/gallery-" + i + ".jpg"; };
+    img.onload = () => { 
+      images.push(img); 
+      img.onclick = () => showLightbox(images.indexOf(img));
+    };
     grid.appendChild(img);
   }
 
-  for (let i = 1; i <= maxPhotos; i++){
-    addPhoto(i);
-  }
-
-  closeBtn.addEventListener("click", hideLightbox);
-
-  lightbox.addEventListener("click", function(e){
-    if (e.target === lightbox || e.target === lightboxImg) hideLightbox();
-  });
-
-  prevBtn.addEventListener("click", function(e){
-    e.stopPropagation();
-    showLightbox(currentIndex - 1);
-  });
-
-  nextBtn.addEventListener("click", function(e){
-    e.stopPropagation();
-    showLightbox(currentIndex + 1);
-  });
-
-  document.addEventListener("keydown", function(e){
+  document.getElementById("closeBtn").onclick = hideLightbox;
+  document.getElementById("nextBtn").onclick = (e) => { e.stopPropagation(); showLightbox(currentIndex + 1); };
+  document.getElementById("prevBtn").onclick = (e) => { e.stopPropagation(); showLightbox(currentIndex - 1); };
+  lightbox.onclick = (e) => { if(e.target !== lightboxImg) hideLightbox(); };
+  document.onkeydown = (e) => {
     if (!lightbox.classList.contains("is-open")) return;
     if (e.key === "Escape") hideLightbox();
-    if (e.key === "ArrowLeft") showLightbox(currentIndex - 1);
     if (e.key === "ArrowRight") showLightbox(currentIndex + 1);
-  });
+    if (e.key === "ArrowLeft") showLightbox(currentIndex - 1);
+  };
 </script>
 
 </body>
