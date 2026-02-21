@@ -410,7 +410,7 @@
         </div>
         <div class="card" style="padding: 10px;">
           <div class="map-container">
-            <iframe width="100%" height="300" frameborder="0" src="https://api.mapy.cz/frame?m&amp;x=16.20739&amp;y=50.61496&amp;z=14&amp;source=muni&amp;id=4270" style="border:0" allowfullscreen></iframe>
+            <iframe width="100%" height="300" frameborder="0" src="https://api.mapy.cz/frame?m&x=16.20739&y=50.61496&z=14&source=muni&id=4270" style="border:0" allowfullscreen></iframe>
           </div>
         </div>
       </div>
@@ -440,92 +440,101 @@
   const grid = document.getElementById("galleryGrid");
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightboxImg");
-  let images = [];
   let currentIndex = 0;
 
-  function showLightbox(index){
-    if (images.length === 0) return;
-    currentIndex = (index + images.length) % images.length;
-    lightboxImg.src = images[currentIndex].src;
-    lightbox.classList.add("is-open");
-    document.body.style.overflow = "hidden";
-  }
+  // Spolehlivý skript, který nevytuhne, když některá fotka chybí
+  for (let i = 1; i <= 40; i++) {
+    // Vytvoříme si v gridu neviditelný prvek, aby se fotky nepomíchaly, pokud se jedna stáhne rychleji než jiná
+    const placeholder = document.createElement("div");
+    placeholder.style.display = "none";
+    grid.appendChild(placeholder);
 
-  function hideLightbox(){
-    lightbox.classList.remove("is-open");
-    document.body.style.overflow = "";
-  }
-
-  // Spolehlivý sekvenční preloader obrázků
-  let photoIndex = 1;
-  const maxPhotos = 40;
-
-  function loadNextPhoto() {
-    if (photoIndex > maxPhotos) return;
-    
-    const i = photoIndex;
     const img = new Image();
-    img.className = "gallery-img";
-    img.alt = "Fotogalerie " + i;
-    img.loading = "lazy";
-    
     let triedJpg = false;
+    let triedJpgUpper = false;
+    let triedPng = false;
 
     img.onload = () => {
-      // Jakmile se načte, vložíme do galerie
-      grid.appendChild(img);
-      images.push(img);
-      img.onclick = () => showLightbox(images.indexOf(img));
-      
-      // Jdeme zkusit další fotku v pořadí
-      photoIndex++;
-      loadNextPhoto();
+      // Když je fotka v pořádku načtena, vyměníme ji za ten neviditelný prvek
+      img.className = "gallery-img";
+      img.alt = "Fotogalerie " + i;
+      placeholder.replaceWith(img); 
     };
 
     img.onerror = () => {
-      // Pokud spadl .jpeg, zkusíme .jpg
+      // Pokud spadl .jpeg, zkoušíme postupně další a další formáty
       if (!triedJpg) {
         triedJpg = true;
         img.src = "assets/gallery-" + i + ".jpg";
+      } else if (!triedJpgUpper) {
+        triedJpgUpper = true;
+        img.src = "assets/gallery-" + i + ".JPG";
+      } else if (!triedPng) {
+        triedPng = true;
+        img.src = "assets/gallery-" + i + ".png";
       } else {
-        // Pokud nenajde ani .jpeg ani .jpg, znamená to konec fotek. 
-        // Dál už nenačítáme a nezobrazí se tak žádné prázdné ikony.
-        return; 
+        // Obrazek fakt nikde není (nebo došly čísla), takže prázdný "chlíveček" smažeme
+        placeholder.remove(); 
       }
     };
 
-    // Vždy nejdřív zkoušíme .jpeg
+    // Vždycky začneme formátem .jpeg
     img.src = "assets/gallery-" + i + ".jpeg";
   }
 
-  // Start načítání od první fotky
-  loadNextPhoto();
+  // Funkce, která si vytáhne všechny fotky, co se fyzicky zobrazily (ty správné)
+  function getValidImages() {
+    return Array.from(grid.querySelectorAll("img"));
+  }
 
-  // Ovládání lightboxu
-  document.getElementById("closeBtn").onclick = hideLightbox;
-  
-  document.getElementById("nextBtn").onclick = (e) => { 
-    e.stopPropagation(); 
-    showLightbox(currentIndex + 1); 
-  };
-  
-  document.getElementById("prevBtn").onclick = (e) => { 
-    e.stopPropagation(); 
-    showLightbox(currentIndex - 1); 
-  };
-  
-  lightbox.onclick = (e) => { 
-    if (e.target !== lightboxImg) {
-      hideLightbox();
+  // Kliknutí na obrázek v mřížce
+  grid.addEventListener("click", (e) => {
+    if (e.target.tagName === "IMG") {
+      const validImages = getValidImages();
+      currentIndex = validImages.indexOf(e.target);
+      if (currentIndex > -1) {
+        lightboxImg.src = validImages[currentIndex].src;
+        lightbox.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+      }
     }
-  };
+  });
+
+  // Posouvání fotek v Lightboxu doleva/doprava
+  function updateLightbox(offset) {
+    const validImages = getValidImages();
+    if (validImages.length === 0) return;
+    currentIndex = (currentIndex + offset + validImages.length) % validImages.length;
+    lightboxImg.src = validImages[currentIndex].src;
+  }
+
+  document.getElementById("closeBtn").addEventListener("click", () => {
+    lightbox.classList.remove("is-open");
+    document.body.style.overflow = "";
+  });
   
-  document.onkeydown = (e) => {
+  document.getElementById("nextBtn").addEventListener("click", (e) => { 
+    e.stopPropagation(); 
+    updateLightbox(1); 
+  });
+  
+  document.getElementById("prevBtn").addEventListener("click", (e) => { 
+    e.stopPropagation(); 
+    updateLightbox(-1); 
+  });
+  
+  lightbox.addEventListener("click", (e) => { 
+    if (e.target !== lightboxImg) {
+      document.getElementById("closeBtn").click(); 
+    }
+  });
+  
+  document.addEventListener("keydown", (e) => {
     if (!lightbox.classList.contains("is-open")) return;
-    if (e.key === "Escape") hideLightbox();
-    if (e.key === "ArrowRight") showLightbox(currentIndex + 1);
-    if (e.key === "ArrowLeft") showLightbox(currentIndex - 1);
-  };
+    if (e.key === "Escape") document.getElementById("closeBtn").click();
+    if (e.key === "ArrowRight") updateLightbox(1);
+    if (e.key === "ArrowLeft") updateLightbox(-1);
+  });
 </script>
 
 </body>
