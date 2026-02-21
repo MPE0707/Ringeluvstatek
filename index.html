@@ -212,6 +212,7 @@
       aspect-ratio: 1 / 1;
       object-fit: cover;
       cursor: zoom-in;
+      width: 100%;
     }
 
     /* Map & Contact */
@@ -305,7 +306,10 @@
 <main id="top">
   <section class="hero">
     <div class="hero-media">
-      <img src="assets/hero.jpg" alt="Ringelův statek" loading="eager" />
+      <picture>
+        <source srcset="assets/hero.jpeg" type="image/jpeg" />
+        <img src="assets/hero.jpg" alt="Ringelův statek, exteriér" loading="eager" />
+      </picture>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -325,7 +329,9 @@
   <section id="o-nas" class="section">
     <div class="container">
       <h2>O statku</h2>
-      <p>Ringelův statek je historická chalupa z počátku 19. století, citlivě zrekonstruovaná pro potřeby moderního ubytování při zachování původního rázu. Najdete nás na samotném konci klidné obce Vernéřovice.</p>
+      <p>Ringelův statek je prostorná chalupa z počátku 19. století s charakteristickými znaky typickými pro tuto oblast – jedná se o tradiční broumovský klasicistní statek. Najdete nás na krásném a klidném místě téměř na konci vesničky Vernéřovice v CHKO Broumovsko. Přímo ze zahrady se nabízí nádherný výhled na okolní louky a blízký les.</p>
+      <p>Statek je ideálním místem pro strávení dovolené 2 až 3 rodin nebo větší skupiny přátel. Najdete zde vše, co k pohodové dovolené potřebujete. Uvnitř na vás čeká velká hala s jídelním stolem, prostorná obývací místnost, čtyři ložnice a pro zahřátí také krbová kamna. K dispozici jsou také různé hry k zapůjčení.</p>
+      <p>Venku si můžete užívat velkou oplocenou zahradu a travnatou plochu před domem. K relaxaci poslouží koupací sud s vířivkou vytápěný dřevem, zahradní nábytek, gril i ohniště. Pohodlně u nás navíc zaparkujete až s 5 auty.</p>
     </div>
   </section>
 
@@ -379,8 +385,8 @@
         <div class="card">
           <h3>Napište nám</h3>
           <p>Máte dotaz k vybavení nebo volným termínům? Rádi vám odpovíme na e-mailu:</p>
-          <a href="mailto:tvuj-email@seznam.cz" class="mail-link">tvuj-email@seznam.cz</a>
-          <p style="margin-top: 20px;"><strong>Adresa:</strong><br>Vernéřovice, CHKO Broumovsko</p>
+          <a href="mailto:info@ringeluvstatek.cz" class="mail-link">info@ringeluvstatek.cz</a>
+          <p style="margin-top: 20px;"><strong>Adresa:</strong><br>Vernéřovice 34, 549 82 Vernéřovice, Česká Republika</p>
         </div>
         <div class="card" style="padding: 10px;">
           <div class="map-container">
@@ -410,6 +416,7 @@
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
+  
   const grid = document.getElementById("galleryGrid");
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightboxImg");
@@ -428,18 +435,38 @@
     document.body.style.overflow = "";
   }
 
-  for (let i = 1; i <= 24; i++){
+  // Vylepšená dynamická galerie
+  function loadPhoto(i) {
     const img = new Image();
     img.className = "gallery-img";
-    img.src = "assets/gallery-" + i + ".jpeg";
     img.loading = "lazy";
-    img.onerror = () => { img.src = "assets/gallery-" + i + ".jpg"; };
-    img.onload = () => { 
-      images.push(img); 
+    img.alt = "Fotografie " + i;
+    
+    // Zkusíme načíst jpeg
+    img.src = "assets/gallery-" + i + ".jpeg";
+    
+    img.onload = () => {
+      // Fotka se povedla načíst, přidáme ji na stránku
+      images.push(img);
       img.onclick = () => showLightbox(images.indexOf(img));
+      grid.appendChild(img);
+      // Hned po úspěchu zkusíme načíst další fotku v řadě
+      loadPhoto(i + 1);
     };
-    grid.appendChild(img);
+    
+    img.onerror = () => {
+      // Pokud se nepovedl jpeg, zkusíme jpg
+      if (img.src.includes(".jpeg")) {
+        img.src = "assets/gallery-" + i + ".jpg";
+      } else {
+        // Pokud nenajde ani jpg, znamená to, že fotky došly a skript se sám zastaví.
+        return; 
+      }
+    };
   }
+
+  // Spuštění načítání od první fotky
+  loadPhoto(1);
 
   document.getElementById("closeBtn").onclick = hideLightbox;
   document.getElementById("nextBtn").onclick = (e) => { e.stopPropagation(); showLightbox(currentIndex + 1); };
