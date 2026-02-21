@@ -337,6 +337,18 @@
           <h3>Farma Wenet</h3>
           <p>Zvířecí ráj v Broumově. Potkáte tu lamy, velbloudy, pštrosy, klokany i lemury.</p>
         </div>
+        <div class="card">
+          <h3>Broumovský klášter</h3>
+          <p>Historická perla regionu s úchvatnou knihovnou, prohlídkami pro rodiny a skvělou kavárnou v zahradě.</p>
+        </div>
+        <div class="card">
+          <h3>Zámeček Bischofstein</h3>
+          <p>Romantický zámeček s restaurací, zříceninou hradu Skály a tajuplným Černým jezírkem.</p>
+        </div>
+        <div class="card">
+          <h3>Centrum Walzel</h3>
+          <p>Ideální "mokrá varianta" když prší (jen 6 km). Restaurace Švejk, bowling, solná jeskyně a lezecká stěna.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -366,11 +378,16 @@
       <div class="contact-grid">
         <div class="card">
           <h3>Napište nám</h3>
+          <p>Máte dotaz k vybavení nebo k pobytu s pejskem? Rádi vám obratem odpovíme na e-mailu:</p>
           <a href="mailto:info@ringeluvstatek.cz" style="font-weight: 800; color: var(--brand); font-size: 1.2rem;">info@ringeluvstatek.cz</a>
-          <p>Vernéřovice 34, 549 82 Vernéřovice</p>
+          <div style="margin-top: 25px;">
+            <p><strong>Adresa chalupy:</strong><br>Vernéřovice 34<br>549 82 Vernéřovice<br>CHKO Broumovsko</p>
+          </div>
         </div>
         <div class="map-container">
-          <iframe width="100%" height="350" frameborder="0" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2524.34140645037!2d16.191632!3d50.620000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470e950a26d7092d%3A0x6a1b26f63456c6c!2zVmVybsmZxZ9vdmljZSAzNCwgNTQ5IDgyIFZlcm7EmZ9vdmljZQ!5e0!3m2!1scs!2scz!4v1700000000000!5m2!1scs!2scz"></iframe>
+          <iframe width="100%" height="350" frameborder="0" style="border:0" loading="lazy" allowfullscreen 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2532.7845532599723!2d16.204803977114674!3d50.61257457162432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470e8cb9b6ef93d1%3A0xc3f6df23e3f7069c!2zVmVybsmlyW92aWNlIDM0LCA1NDkgODIgVmVybsmlyW92aWNl!5e0!3m2!1scs!2scz!4v1700000000000!5m2!1scs!2scz">
+          </iframe>
         </div>
       </div>
     </div>
@@ -402,7 +419,7 @@
   const categories = ['exterier', 'interier', 'wellness', 'okoli'];
 
   categories.forEach(category => {
-    for (let i = 1; i <= 15; i++) {
+    for (let i = 1; i <= 30; i++) {
       const placeholder = document.createElement("div");
       placeholder.style.display = "none";
       grid.appendChild(placeholder);
@@ -410,6 +427,7 @@
       img.onload = () => {
         img.className = "gallery-img";
         img.dataset.category = category;
+        img.alt = "Ringelův statek - " + category;
         placeholder.replaceWith(img); 
       };
       img.onerror = () => placeholder.remove();
