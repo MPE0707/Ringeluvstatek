@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ringelův statek | Ubytování Vernéřovice</title>
+  <meta name="description" content="Ringelův statek ve Vernéřovicích v CHKO Broumovsko. Ubytování až pro 11 osob, oplocená zahrada, koupací sud s vířivkou." />
+  <style>
+:root{
+  --bg:#fbfaf7;
+  --bg-alt:#f1efe8;
+  --text:#1f2937;
+  --muted:#5b6472;
+  --brand:#2f6b4f;
+  --card:#ffffff;
+  --border: rgba(31,41,55,0.10);
+  --shadow: 0 10px 28px rgba(31,41,55,0.10);
+  --radius: 18px;
+  --max: 1120px;
+}
+
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+img{ max-width: 100%; display:block; }
+
+.container{
+  width: min(var(--max), calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(251,250,247,0.86);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  gap: 14px;
+  padding: 14px 0;
+}
+
+.nav{
+  display:flex;
+  flex-wrap: wrap;
+  align-items:center;
+  gap: 10px;
+}
+
+.nav a{
+  text-decoration:none;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 8px 10px;
+  border-radius: 12px;
+}
+
+.nav a:hover{
+  background: rgba(47,107,79,0.08);
+  color: var(--text);
+}
+
+.button-small{
+  background: var(--brand);
+  color:#fff !important;
+}
+
+.hero{
+  padding: 46px 0 26px 0;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 26px;
+  align-items:center;
+}
+
+.hero h1{
+  font-size: clamp(28px, 3.2vw, 44px);
+  line-height: 1.15;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.02em;
+}
+
+.lead{
+  color: var(--muted);
+  font-size: 18px;
+  margin: 0 0 14px 0;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 8px 0 14px 0;
+}
+
+.button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-weight: 800;
+  border: 1px solid var(--border);
+  text-decoration:none;
+  color: var(--text);
+  background: rgba(255,255,255,0.65);
+}
+
+.button:hover{
+  background: #fff;
+}
+
+.button.ghost{
+  background: rgba(255,255,255,0.35);
+}
+
+.button.ghost:hover{
+  background: rgba(255,255,255,0.70);
+}
+
+.button:visited{ color: var(--text); }
+
+.button[href^="https://"], .button.primary{
+  background: var(--brand);
+  color:#fff;
+  border-color: transparent;
+  box-shadow: var(--shadow);
+}
+
+.button[href^="https://"]:hover, .button.primary:hover{
+  background: #25573f;
+  color:#fff;
+}
+
+.badges{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.badge{
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.65);
+  border: 1px solid var(--border);
+}
+
+.badge-title{
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.badge-value{
+  font-weight: 900;
+  margin-top: 2px;
+}
+
+.hero-media img{
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.section{
+  padding: 48px 0;
+}
+
+.section.alt{
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.section h2{
+  margin: 0 0 12px 0;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+}
+
+.small{ font-size: 14px; }
+.muted{ color: var(--muted); }
+
+.grid-list{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  list-style:none;
+  padding: 0;
+  margin: 18px 0 0 0;
+}
+
+.grid-list li{
+  background: rgba(255,255,255,0.65);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 12px 14px;
+  font-weight: 700;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: 0 8px 22px rgba(31,41,55,0.06);
+}
+
+.price{
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.gallery{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.gallery-img{
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 18px rgba(31,41,55,0.06);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.iframe-note{
+  margin-top: 22px;
+}
+
+.iframe-wrap{
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  overflow:hidden;
+  background: rgba(255,255,255,0.6);
+  min-height: 320px;
+  margin-top: 10px;
+}
+
+.iframe-placeholder{
+  padding: 18px;
+  color: var(--muted);
+}
+
+.site-footer{
+  padding: 22px 0;
+  border-top: 1px solid var(--border);
+  background: rgba(251,250,247,0.9);
+}
+
+.footer-inner{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  gap: 14px;
+}
+
+.footer-inner a{
+  text-decoration:none;
+}
+
+@media (max-width: 980px){
+  .hero-grid{ grid-template-columns: 1fr; }
+  .badges{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cards{ grid-template-columns: 1fr; }
+  .grid-list{ grid-template-columns: 1fr; }
+  .gallery{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logo"><strong>Ringelův statek</strong></div>
+    <nav class="nav">
+      <a href="#o-nas">O statku</a>
+      <a href="#vybaveni">Vybavení</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#vylety">Výlety</a>
+      <a href="#ceny">Ceník</a>
+      <a class="button-small" href="#rezervace">Rezervace</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h1>Klid a příroda v srdci Broumovska</h1>
+        <p class="lead">
+          Prostorná chalupa pro až 11 osob na okraji Vernéřovic.
+          Oplocená zahrada, koupací sud s vířivkou a výlety přímo od domu.
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="#rezervace">Zkontrolovat dostupnost</a>
+          <a class="button ghost" href="#galerie">Prohlédnout fotky</a>
+        </div>
+        <div class="badges">
+          <div class="badge">
+            <div class="badge-title">Kapacita</div>
+            <div class="badge-value">až 11 osob</div>
+          </div>
+          <div class="badge">
+            <div class="badge-title">Ložnice</div>
+            <div class="badge-value">4</div>
+          </div>
+          <div class="badge">
+            <div class="badge-title">Koupelny</div>
+            <div class="badge-value">2</div>
+          </div>
+          <div class="badge">
+            <div class="badge-title">Parkování</div>
+            <div class="badge-value">až 5 aut</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <img src="assets/hero.jpg" alt="Ringelův statek, exteriér" loading="eager" />
+        <p class="muted small">
+          Pokud se fotka nezobrazuje, zkontroluj že se jmenuje přesně <strong>hero.jpg</strong> a je ve složce <strong>assets</strong> vedle souboru index.html.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="o-nas" class="section">
+    <div class="container">
+      <h2>O statku</h2>
+      <p>
+        Ringelův statek je chalupa z počátku 19. století na klidném místě
+        téměř na konci vesnice Vernéřovice. Ideální pro rodiny a skupiny přátel.
+      </p>
+    </div>
+  </section>
+
+  <section id="vybaveni" class="section alt">
+    <div class="container">
+      <h2>Vybavení</h2>
+      <ul class="grid-list">
+        <li>4 ložnice</li>
+        <li>2 koupelny</li>
+        <li>Koupací sud s vířivkou</li>
+        <li>Oplocená zahrada</li>
+        <li>WiFi</li>
+        <li>Plně vybavená kuchyň</li>
+      </ul>
+      <p class="muted small">Nekuřácký objekt. Domácí mazlíčci po domluvě.</p>
+    </div>
+  </section>
+
+  <section id="galerie" class="section">
+    <div class="container">
+      <h2>Galerie</h2>
+      <p class="muted">
+        Přidej fotky do složky assets a pojmenuj je <strong>gallery-1.jpg</strong> až <strong>gallery-12.jpg</strong>.
+        Klidně jich dej méně, chybějící se jen nezobrazí.
+      </p>
+
+      <div class="gallery" id="galleryGrid" aria-label="Fotogalerie"></div>
+    </div>
+  </section>
+
+  <section id="vylety" class="section alt">
+    <div class="container">
+      <h2>Tipy na výlety</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Adršpašské skály</h3>
+          <p>Známé skalní město přibližně 25 minut autem.</p>
+        </div>
+        <div class="card">
+          <h3>Broumovské stěny</h3>
+          <p>Skalní vyhlídky a krásné turistické trasy.</p>
+        </div>
+        <div class="card">
+          <h3>Broumovský klášter</h3>
+          <p>Historická dominanta regionu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ceny" class="section">
+    <div class="container">
+      <h2>Ceník</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Letní sezóna</h3>
+          <p class="price">28 500 Kč / týden</p>
+        </div>
+        <div class="card">
+          <h3>Mimo sezónu</h3>
+          <p class="price">24 500 Kč / týden</p>
+        </div>
+        <div class="card">
+          <h3>Víkend</h3>
+          <p class="price">9 500 Kč</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="rezervace" class="section alt">
+    <div class="container">
+      <h2>Rezervace</h2>
+      <p>Rezervace probíhá přes e-chalupy.</p>
+      <a class="button" href="https://www.e-chalupy.cz/chalupa-vernerovice-ubytovani-statek-o8519" target="_blank" rel="noopener">
+        Otevřít rezervaci
+      </a>
+
+      <div class="iframe-note">
+        <h3>Kalendář obsazenosti</h3>
+        <p class="muted small">
+          Pokud získáš iframe kód z e-chalupy, vložíme ho sem. Zatím je tu jen místo.
+        </p>
+        <div class="iframe-wrap">
+          <div class="iframe-placeholder">Sem vlož iframe kód, pokud je k dispozici.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt" class="section">
+    <div class="container">
+      <h2>Kontakt</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Napište nebo zavolejte</h3>
+          <p>Telefon: doplnit</p>
+          <p>Email: doplnit</p>
+          <p>Adresa: Vernéřovice, CHKO Broumovsko</p>
+        </div>
+        <div class="card">
+          <h3>Příjezd</h3>
+          <p class="muted">Sem můžeš později doplnit mapu nebo instrukce k příjezdu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="muted">© <span id="year"></span> Ringelův statek</p>
+    <a class="muted" href="#top">Zpět nahoru</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const grid = document.getElementById("galleryGrid");
+  const maxPhotos = 12;
+
+  function addPhoto(i){
+    const img = new Image();
+    img.loading = "lazy";
+    img.alt = "Fotogalerie " + i;
+    img.src = "assets/gallery-" + i + ".jpg";
+    img.className = "gallery-img";
+
+    img.onerror = function(){
+      if (img && img.parentNode) img.parentNode.removeChild(img);
+    };
+
+    grid.appendChild(img);
+  }
+
+  for (let i = 1; i <= maxPhotos; i++){
+    addPhoto(i);
+  }
+</script>
+
+</body>
+</html>
