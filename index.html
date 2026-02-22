@@ -124,7 +124,7 @@
       color: #fff;
     }
     .hero h1{
-      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-size: clamp(1.8rem, 5vw, 3.5rem);
       line-height: 1.1;
       margin: 0;
       letter-spacing: -0.02em;
@@ -176,10 +176,11 @@
     .gallery{ display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
     .gallery-img{ border-radius: 12px; aspect-ratio: 1/1; object-fit: cover; cursor: zoom-in; width: 100%; border: 1px solid var(--border); }
 
-    .map-container { width: 100%; height: 350px; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); }
+    .map-container { width: 100%; height: 400px; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); }
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-    .button{ display:inline-flex; align-items:center; justify-content:center; padding: 16px 32px; border-radius: 14px; font-weight: 800; text-decoration:none; transition: 0.2s; }
+    .button{ display:inline-flex; align-items:center; justify-content:center; padding: 14px 28px; border-radius: 14px; font-weight: 800; text-decoration:none; transition: 0.2s; cursor: pointer; }
     .button.primary{ background: var(--brand); color:#fff; }
+    .button.primary:hover{ background: #25573f; }
     .button.secondary { background: #fff; color: var(--brand); }
     .site-footer{ padding: 40px 0; background: #111827; color: #9ca3af; }
 
@@ -219,7 +220,7 @@
       <a href="#vybaveni">Vybavení</a>
       <a href="#galerie">Galerie</a>
       <a href="#vylety">Výlety</a>
-      <a class="cta" href="#rezervace">Ceník & Rezervace</a>
+      <a class="cta" href="#rezervace">Rezervace</a>
       <div class="lang-switch">
         <a href="index.html" class="active">CZ</a>
         <a href="en.html">EN</a>
@@ -313,42 +314,15 @@
     <div class="container">
       <h2>Tipy na výlety</h2>
       <div class="cards">
-        <div class="card">
-          <h3>Adršpašské skály</h3>
-          <p>Známé skalní město plné fascinujících útvarů, vodopádů a projížděk na lodičce. Nachází se jen 25 minut autem od nás.</p>
-        </div>
-        <div class="card">
-          <h3>Teplické skály</h3>
-          <p>Rozlehlejší a divočejší soused Adršpachu. Čekají tu na vás hluboké soutěsky, strmé stěny a mnohem méně turistů.</p>
-        </div>
-        <div class="card">
-          <h3>Broumovské stěny</h3>
-          <p>Klidnější, ale stejně nádherná alternativa. Nezapomeňte navštívit vyhlídku Hvězda a malebnou Kovářovu rokli.</p>
-        </div>
-        <div class="card">
-          <h3>Broumovské kostely</h3>
-          <p>Unikátní architektonický soubor barokních kostelů od stavitelů Dientzenhoferů rozesetých po okolních vesnicích.</p>
-        </div>
-        <div class="card">
-          <h3>Stolová hora Ostaš</h3>
-          <p>Skvělá volba pro rodiny s dětmi. Horní a Dolní labyrint plný skalních bludišť si děti zamilují.</p>
-        </div>
-        <div class="card">
-          <h3>Farma Wenet</h3>
-          <p>Zvířecí ráj v Broumově. Potkáte tu lamy, velbloudy, pštrosy, klokany i lemury.</p>
-        </div>
-        <div class="card">
-          <h3>Broumovský klášter</h3>
-          <p>Historická perla regionu s úchvatnou knihovnou, prohlídky pro rodiny a skvělou kavárnu v zahradě.</p>
-        </div>
-        <div class="card">
-          <h3>Zámeček Bischofstein</h3>
-          <p>Romantický zámeček s restaurací, zříceninou hradu Skály a tajuplným Černým jezírkem.</p>
-        </div>
-        <div class="card">
-          <h3>Centrum Walzel</h3>
-          <p>Ideální "mokrá varianta" když prší (jen 6 km). Restaurace Švejk, bowling, solnou jeskyni a lezeckou stěnu.</p>
-        </div>
+        <div class="card"><h3>Adršpašské skály</h3><p>Známé skalní město plné fascinujících útvarů a projížděk na lodičce. 25 min autem.</p></div>
+        <div class="card"><h3>Teplické skály</h3><p>Divočejší soused Adršpachu. Hluboké soutěsky, strmé stěny a mnohem méně turistů.</p></div>
+        <div class="card"><h3>Broumovské stěny</h3><p>Nádherná vyhlídka Hvězda a malebná Kovářova rokle. Klidnější alternativa.</p></div>
+        <div class="card"><h3>Broumovské kostely</h3><p>Unikátní soubor barokních kostelů od stavitelů Dientzenhoferů rozesetých po okolí.</p></div>
+        <div class="card"><h3>Stolová hora Ostaš</h3><p>Ideální pro rodiny. Horní a Dolní labyrint plný skalních bludišť děti nadchne.</p></div>
+        <div class="card"><h3>Farma Wenet</h3><p>Zvířecí ráj v Broumově. Lamy, velbloudi, pštrosy a další zvířata na dosah ruky.</p></div>
+        <div class="card"><h3>Broumovský klášter</h3><p>Historická perla regionu s úchvatnou knihovnou, zahradou a skvělou kavárnou.</p></div>
+        <div class="card"><h3>Zámeček Bischofstein</h3><p>Jiráskovy skály s romantickým zámečkem, zříceninou hradu a tajuplným jezírkem.</p></div>
+        <div class="card"><h3>Centrum Walzel</h3><p>Skvělá varianta pro deštivé dny (6 km). Restaurace Švejk, bowling a lezecká stěna.</p></div>
       </div>
     </div>
   </section>
@@ -367,34 +341,41 @@
   <section id="rezervace" class="section alt">
     <div class="container" style="text-align: center;">
       <h2>Rezervace a obsazenost</h2>
-      <p style="margin-bottom: 30px;">Aktuální přehled volných termínů. Pro rezervaci nás můžete kontaktovat napřímo nebo využít portál e-chalupy.cz.</p>
+      <p style="margin-bottom: 30px;">Aktuální přehled volných termínů. Rezervaci proveďte přes e-chalupy.cz nebo nás kontaktujte.</p>
       
-      <div style="background: #fff; padding: 20px; border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.03); overflow: hidden;">
+      <div style="background: #fff; padding: 20px; border-radius: 20px; border: 1px solid var(--border); overflow-x: auto;">
         <script src="https://obsazenost.e-chalupy.cz/resize.js"></script>
-        <iframe src="https://obsazenost.e-chalupy.cz/kalendar.php?id=8519&pocetMesicu=3&velikost=3&legenda=ano&vybraneMesice=&naStred=ano&ctvrtleti=ne&stin=ne&jazyk=cz&jednotky=ano&idJednotky=0&vypisJednotky=ne&souhrnny=&pozadi=ffffff&kalendarText=000000&kalendarPozadi=ffffff&ramecek=dddddd&mesicText=555555&mesicPozadi=dddddd&dnyText=008000&dnyPozadia=ffffff&obsazenoText=222222&obsazenoPozadi=f74848&volnoText=222222&volnoPozadi=67cf67&castecneText=222222&castecnePozadi=489ce0&neaktivniDnyText=bbbbbb&neaktivniDnyPozadi=ffffff&legendaText=000000&fontFamily=Verdana&extCss=" height="460px" width="100%" frameborder="0" id="echalupy-kalendar"></iframe>
-      </div>
-      
-      <div style="margin-top: 30px;">
-        <a class="button primary" href="https://www.e-chalupy.cz/chalupa-vernerovice-ubytovani-statek-o8519" target="_blank" rel="noopener">Přejít na detail e-chalupy.cz</a>
+        <iframe src="https://obsazenost.e-chalupy.cz/kalendar.php?id=8519&pocetMesicu=12&velikost=4&legenda=ano&vybraneMesice=6%2C7%2C8%2C9&naStred=ano&ctvrtleti=ne&stin=ne&jazyk=cz&jednotky=ano&idJednotky=0&vypisJednotky=ne&souhrnny=&pozadi=ffffff&kalendarText=000000&kalendarPozadi=ffffff&ramecek=dddddd&mesicText=555555&mesicPozadi=dddddd&dnyText=008000&dnyPozadia=ffffff&obsazenoText=222222&obsazenoPozadi=f74848&volnoText=222222&volnoPozadi=67cf67&castecneText=222222&castecnePozadi=489ce0&neaktivniDnyText=bbbbbb&neaktivniDnyPozadi=ffffff&legendaText=000000&fontFamily=Verdana&extCss=" height="460px" width="100%" frameborder="0" id="echalupy-kalendar"></iframe>
       </div>
     </div>
   </section>
 
-  <section id="kontakt" class="section">
+  <section id="podminky" class="section">
+    <div class="container" style="text-align: center;">
+      <h2>Ubytovací podmínky</h2>
+      <p style="margin-bottom: 25px;">Před příjezdem si prosím přečtěte naše ubytovací podmínky a pravidla pobytu na statku.</p>
+      <a href="assets/ubytovaci-podminky.pdf" class="button primary" download>
+        Stáhnout podmínky (PDF)
+      </a>
+    </div>
+  </section>
+
+  <section id="kontakt" class="section alt">
     <div class="container">
       <h2>Kontakt a poloha</h2>
       <div class="contact-grid">
         <div class="card">
           <h3>Napište nám</h3>
-          <p>Máte dotaz k vybavení nebo k pobytu s pejskem? Rádi vám obratem odpovíme na e-mailu:</p>
+          <p>Máte dotaz k vybavení nebo k pobytu? Rádi vám obratem odpovíme na e-mailu:</p>
           <a href="mailto:info@ringeluvstatek.cz" style="font-weight: 800; color: var(--brand); font-size: 1.2rem;">info@ringeluvstatek.cz</a>
           <div style="margin-top: 25px;">
-            <p><strong>Adresa chalupy:</strong><br>Vernéřovice 34<br>549 82 Vernéřovice<br>CHKO Broumovsko</p>
+            <p><strong>Adresa chalupy:</strong><br>Vernéřovice 34<br>549 82 Vernéřovice<br>Česká republika</p>
           </div>
         </div>
         <div class="map-container">
-          <iframe width="100%" height="350" frameborder="0" style="border:0" loading="lazy" allowfullscreen 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2527.9157262575293!2d16.20520137704257!3d50.61096007162234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470e8be487679623%3A0x6739d4872f23d242!2zVmVybsmbeW92aWNlIDM0LCA1NDkgODIgVmVybsmbeW92aWNl!5e0!3m2!1scs!2scz!4v1708611000000!5m2!1scs!2scz">
+          <iframe 
+            width="100%" height="400" frameborder="0" style="border:0" loading="lazy" allowfullscreen 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1004.8143891461877!2d16.19232357731388!3d50.62145322967119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470e5ead3d270437%3A0x67076a95c16161d5!2zVmVybsmZxZlvdmljZSAzNCwgNTQ5IDgyIFZlcm7EmZlvdmljZQ!5e0!3m2!1scs!2scz!4v1700000000000!5m2!1scs!2scz">
           </iframe>
         </div>
       </div>
