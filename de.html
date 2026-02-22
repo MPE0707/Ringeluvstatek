@@ -53,7 +53,7 @@
     .site-header{
       position: sticky;
       top: 0;
-      z-index: 30;
+      z-index: 50;
       background: rgba(255,255,255,0.95);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
@@ -69,7 +69,29 @@
       font-weight: 900;
       letter-spacing: -0.01em;
       font-size: 1.2rem;
+      position: relative;
+      z-index: 60;
     }
+    
+    .hamburger {
+      display: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+      z-index: 60;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background-color: var(--text);
+      border-radius: 3px;
+      transition: all 0.3s ease-in-out;
+    }
+
     .nav{
       display:flex;
       flex-wrap: wrap;
@@ -191,10 +213,49 @@
     .lightbox-nav { position: absolute; width: 100%; display: flex; justify-content: space-between; padding: 0 20px; }
     .lightbox-btn { background: rgba(255,255,255,0.1); border: none; color: #fff; font-size: 30px; padding: 15px; border-radius: 50%; cursor: pointer; }
 
+    /* MOBILNÍ ZOBRAZENÍ A HAMBURGER MENU */
     @media (max-width: 768px){
-      .header-inner { flex-direction: column; padding: 15px 0; gap: 10px; }
-      .nav { justify-content: center; }
-      .lang-switch { border: none; margin: 0; padding: 0; width: 100%; justify-content: center; }
+      .hamburger {
+        display: flex;
+      }
+      .nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        border-top: 1px solid var(--border);
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: clip-path 0.3s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
+      }
+      .nav.is-open {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        opacity: 1;
+        visibility: visible;
+      }
+      .nav a {
+        width: 100%;
+        text-align: center;
+        font-size: 1.1rem;
+        padding: 12px;
+      }
+      .lang-switch {
+        border-left: none;
+        border-top: 1px solid var(--border);
+        margin: 10px 0 0 0;
+        padding-top: 15px;
+        width: 100%;
+        justify-content: center;
+      }
+      .hamburger.is-active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+      .hamburger.is-active span:nth-child(2) { opacity: 0; }
+      .hamburger.is-active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
       .hero { min-height: 500px; }
       .hero-content { padding-top: 40px; }
       .hero h1 { font-size: 1.8rem; text-align: center; }
@@ -214,7 +275,14 @@
 <header class="site-header">
   <div class="container header-inner">
     <div class="logo">Ringelův statek</div>
-    <nav class="nav">
+    
+    <button class="hamburger" id="hamburger-btn" aria-label="Menü öffnen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav" id="nav-menu">
       <a href="#o-nas">Über uns</a>
       <a href="#relax">Badefass</a>
       <a href="#vybaveni">Ausstattung</a>
@@ -256,7 +324,7 @@
   <section id="o-nas" class="section">
     <div class="container">
       <h2>Über den Bauernhof</h2>
-      <p>Ringelův statek je historischer Bauernhof aus dem Jahr 1820 mit typischen Merkmalen eines Braunauer klassizistischen Hofes. Erwarten Sie kein glänzendes modernes Gästehaus – unser Haus hat seine Jahre und kleine Mängel, aber es versprüht eine echte, authentische ländliche Atmosphäre.</p>
+      <p>Ringelův statek ist ein historischer Bauernhof aus dem Jahr 1820 mit typischen Merkmalen eines Braunauer klassizistischen Hofes. Erwarten Sie kein glänzendes modernes Gästehaus – unser Haus hat seine Jahre und kleine Mängel, aber es versprüht eine echte, authentische ländliche Atmosphäre.</p>
       <p>Sie finden uns an einem schönen und ruhigen Ort im Dorf Vernéřovice im Naturschutzgebiet Broumovsko. Direkt vom Garten aus hat man einen herrlichen Blick auf die umliegenden Wiesen und den Wald. Das Haus ist ein idealer Ort für einen Urlaub für 2 bis 3 Familien oder eine Gruppe von Freunden. Im Inneren erwarten Sie eine große gewölbte Halle, ein geräumiges Wohnzimmer mit Kamin und vier gemütliche Schlafzimmer.</p>
     </div>
   </section>
@@ -314,15 +382,42 @@
     <div class="container">
       <h2>Ausflugstipps</h2>
       <div class="cards">
-        <div class="card"><h3>Adersbacher Felsen</h3><p>Bekannte Felsenstadt mit faszinierenden Formationen und Bootsfahrten. 25 Min Fahrt.</p></div>
-        <div class="card"><h3>Wekelsdorfer Felsen</h3><p>Der wilde Nachbar von Adersbach. Tiefe Schluchten, steile Wände und weniger Touristen.</p></div>
-        <div class="card"><h3>Braunauer Wände</h3><p>Schöne Aussicht Hvězda und Kovářova-Schlucht. Eine ruhigere Alternative.</p></div>
-        <div class="card"><h3>Barockkirchen</h3><p>Einzigartige Gruppe von Barockkirchen der Baumeister Dientzenhofer in der Region.</p></div>
-        <div class="card"><h3>Tafelberg Ostaš</h3><p>Ideal für Familien. Oberes und Unteres Labyrinth voller Felsenlabyrinthe für Kinder.</p></div>
-        <div class="card"><h3>Farm Wenet</h3><p>Tierparadies in Braunau. Lamas, Kamele, Strauße und weitere Tiere zum Anfassen.</p></div>
-        <div class="card"><h3>Kloster Braunau</h3><p>Historische Perle der Region mit Bibliothek, Garten und einem tollen Café.</p></div>
-        <div class="card"><h3>Bischofstein</h3><p>Romantisches Schlösschen mit Restaurant, Burgruine und geheimnisvollem See.</p></div>
-        <div class="card"><h3>Zentrum Walzel</h3><p>Ideal für Regentage (6 km). Restaurant Švejk, Bowling und Kletterwand.</p></div>
+        <div class="card">
+          <h3>Adersbacher Felsen</h3>
+          <p>Bekannte Felsenstadt voller faszinierender Formationen und Bootsfahrten. 25 Min Fahrt.</p>
+        </div>
+        <div class="card">
+          <h3>Wekelsdorfer Felsen</h3>
+          <p>Der wilde Nachbar von Adersbach. Tiefe Schluchten, steile Wände und weniger Touristen.</p>
+        </div>
+        <div class="card">
+          <h3>Braunauer Wände</h3>
+          <p>Schöne Aussicht Hvězda und Kovářova-Schlucht. Eine ruhigere Alternative.</p>
+        </div>
+        <div class="card">
+          <h3>Barockkirchen</h3>
+          <p>Einzigartige Gruppe von Barockkirchen der Baumeister Dientzenhofer in der Region.</p>
+        </div>
+        <div class="card">
+          <h3>Tafelberg Ostaš</h3>
+          <p>Ideal für Familien. Oberes und Unteres Labyrinth voller Felsenlabyrinthe für Kinder.</p>
+        </div>
+        <div class="card">
+          <h3>Farm Wenet</h3>
+          <p>Tierparadies in Braunau. Lamas, Kamele, Strauße und weitere Tiere zum Anfassen.</p>
+        </div>
+        <div class="card">
+          <h3>Kloster Braunau</h3>
+          <p>Historische Perle der Region mit Bibliothek, Garten und einem tollen Café.</p>
+        </div>
+        <div class="card">
+          <h3>Bischofstein</h3>
+          <p>Romantisches Schlösschen mit Restaurant, Burgruine und geheimnisvollem See.</p>
+        </div>
+        <div class="card">
+          <h3>Zentrum Walzel</h3>
+          <p>Ideal für Regentage (6 km). Restaurant Švejk, Bowling und Kletterwand.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -375,7 +470,7 @@
         <div class="map-container">
           <iframe 
             width="100%" height="400" frameborder="0" style="border:0" loading="lazy" allowfullscreen 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2524.34140645037!2d16.191632!3d50.620000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470e950a26d7092d%3A0x6a1b26f63456c6c!2zVmVybsmZxZ9vdmljZSAzNCwgNTQ5IDgyIFZlcm7EmZ9vdmljZQ!5e0!3m2!1scs!2scz!4v1700000000000!5m2!1scs!2scz6">
+            src="https://maps.google.com/maps?q=Vern%C3%A9%C5%99ovice%2034,%20549%2082%20Vern%C3%A9%C5%99ovice,%20%C4%8Cesk%C3%A1%20republika&t=&z=19&ie=UTF8&iwloc=&output=embed">
           </iframe>
         </div>
       </div>
@@ -401,6 +496,24 @@
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  // --- HAMBURGER MENU JS ---
+  const hamburgerBtn = document.getElementById("hamburger-btn");
+  const navMenu = document.getElementById("nav-menu");
+  const navLinks = navMenu.querySelectorAll("a");
+
+  hamburgerBtn.addEventListener("click", () => {
+    hamburgerBtn.classList.toggle("is-active");
+    navMenu.classList.toggle("is-open");
+  });
+
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      hamburgerBtn.classList.remove("is-active");
+      navMenu.classList.remove("is-open");
+    });
+  });
+
   const grid = document.getElementById("galleryGrid");
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightboxImg");
